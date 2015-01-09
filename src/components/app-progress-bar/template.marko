@@ -6,6 +6,9 @@
 
         <a href="#" class="progress-step">
             <invoke function="step.invokeBody()" if="step.invokeBody"/>
+            <if test="step.label">
+                $step.label
+            </if>
             <div class="completion-icon"></div>
         </a>
         <div class="progress-step-end">

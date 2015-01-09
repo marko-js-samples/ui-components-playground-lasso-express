@@ -3,6 +3,7 @@ var raptorDom = require('raptor-dom');
 var markoWidgets = require('marko-widgets');
 var button = require('src/components/app-button');
 var checkbox = require('src/components/app-checkbox');
+var progressBar = require('src/components/app-progress-bar');
 
 function Widget(config) {
     var widgets = this.widgets;
@@ -46,6 +47,27 @@ function Widget(config) {
         .appendTo(renderTarget);
     });
 
+    widgets.renderProgressBarButton.on('click', function() {
+        progressBar.render({
+                steps: [
+                    {
+                        label: 'Step 1'
+                    },
+                    {
+                        label: 'Step 2'
+                    },
+                    {
+                        label: 'Step 3',
+                        active: true
+                    },
+                    {
+                        label: 'Step 4'
+                    }
+                ]
+            })
+            .appendTo(renderTarget);
+    });
+
     function showChecked() {
         var checked = [];
 
@@ -55,11 +77,13 @@ function Widget(config) {
             if (checkboxWidget.isChecked()) {
                 checked.push(checkboxWidget.data.name);
             }
-            _this.$('#checked').html(checked.length ? checked.join(' ') : '(none)');
+            _this.$('#checked').html(checked.length ? checked.join(', ') : '(none)');
         });
     }
 
-    // You can can also get the widget associated with a DOM element:
+    // You can can also get the widget associated with a DOM element. We will
+    // use that track to iterate over the checkboxes to iterate over all of
+    // the checkboxes
     raptorDom.forEachChildEl(this.getEl('checkboxes'), function(checkboxEl) {
         var checkboxWidget = markoWidgets.getWidgetForEl(checkboxEl);
         _this.subscribeTo(checkboxWidget)

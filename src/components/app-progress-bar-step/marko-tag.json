@@ -1,6 +1,7 @@
 {
     "attributes": {
         "name": "string",
+        "label": "string",
         "active": "boolean"
     },
     "import-var": {
