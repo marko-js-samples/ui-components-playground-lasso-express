@@ -1,6 +1,5 @@
 {
     "dependencies": [
-        "src/components/app-header/optimizer.json",
-        "src/components/app-footer/optimizer.json"
+        
     ]
 }

@@ -1,31 +1,45 @@
 <optimizer-page package-path="./optimizer.json" />
 
 <layout-use template="src/layouts/default/template.marko">
+    <layout-put into="title">
+        RaptorJS UI Components Playground
+    </layout-put>
     <layout-put into="body">
         <div w-bind="./widget" c-space="preserve">
             <fieldset>
                 <legend>Checkboxes</legend>
-                <app-checkbox label="Foo"/>
-                <app-checkbox label="Bar" checked/>
+                <div w-el-id="checkboxes">
+                    <app-checkbox label="Foo" data="{name: 'foo'}"/>
+                    <app-checkbox label="Bar" data="{name: 'bar'}" checked/>
+                    <app-checkbox label="Baz" data="{name: 'baz'}"/>
+                </div>
+                <div>
+                    <b>Checked</b>: <span w-el-id="checked"/>
+                </div>
+
             </fieldset>
             <fieldset>
                 <legend>Buttons</legend>
 
-                <h2>Secondary</h2>
-
-                <app-button label="small" size="small" variant="secondary"/>
-
-                <app-button label="normal" size="normal" variant="secondary"/>
-
-                <app-button label="large" size="large" variant="secondary"/>
-
-                <h2>Primary</h2>
-
-                <app-button label="small" size="small" variant="primary"/>
-
-                <app-button label="normal" size="normal" variant="primary"/>
-
-                <app-button label="large" size="large" variant="primary"/>
+                <!-- Yes, this is a table -->
+                <table>
+                    <tr>
+                        <td><b>Primary: </b></td>
+                        <td>
+                            <app-button label="small" size="small" variant="primary"/>
+                            <app-button label="normal" size="normal" variant="primary"/>
+                            <app-button label="large" size="large" variant="primary"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Secondary:&nbsp;</b></td>
+                        <td>
+                            <app-button label="small" size="small" variant="secondary"/>
+                            <app-button label="normal" size="normal" variant="secondary"/>
+                            <app-button label="large" size="large" variant="secondary"/>
+                        </td>
+                    </tr>
+                </table>
 
             </fieldset>
 
@@ -35,6 +49,12 @@
                 <app-button label="Show Overlay"
                     variant="primary"
                     w-id="showOverlayButton"/>
+
+                <app-button label="Show Notification"
+                    variant="primary"
+                    w-id="showNotificationButton"/>
+
+                <app-notifications/>
 
                 <app-overlay w-id="overlay">
                     <h2>Overlay Demo</h2>

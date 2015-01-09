@@ -1,6 +1,4 @@
-var raptorRenderer = require('raptor-renderer');
-var renderer = require('./renderer');
-
-exports.render = function(input, callback) {
-    return raptorRenderer.render(renderer, input, callback);
-};
+// Export a render(input, callback) method that can be used
+// to render this UI component on the client or server
+exports.render = require('raptor-renderer')
+    .createRenderFunc(require('./renderer'));

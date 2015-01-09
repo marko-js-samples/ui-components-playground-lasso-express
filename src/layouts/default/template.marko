@@ -3,24 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        RaptorJS UI Components
+        <layout-placeholder name="title"/>
     </title>
+
+    <!--
+    <link> tags to include optimized CSS URLs will be included below:
+    -->
     <optimizer-head/>
 </head>
 <body>
-    <layout-placeholder name="header">
-    </layout-placeholder>
+    <h1>
+        <layout-placeholder name="title"/>
+    </h1>
 
     <main id="main">
         <layout-placeholder name="body"/>
     </main>
 
-    <app-footer/>
-
+    <!--
+    <script> tags to include optimized JS URLs will be included below:
+    -->
     <optimizer-body/>
-    <async-fragments/>
+
+    <!-- Code to initialize widgets will be inserted below -->
     <init-widgets immediate/>
 
+    <!-- Out-of-order async fragments (if any) will be rendered below -->
+    <async-fragments/>
+
+    <!--
+    If the browser is started using the browser-refresh launcher
+    then a <script> tag will be injected below to open a WebSocket
+    connection to the server
+    -->
     <browser-refresh enabled="true"/>
 </body>
 </html>
+<layout-placeholder name="title"/>

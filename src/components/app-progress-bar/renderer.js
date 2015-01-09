@@ -4,8 +4,6 @@ function Step(step) {
     this._step = step;
     this.invokeBody = step.invokeBody;
     this.label = step.label;
-    this.isFirst = false;
-    this.isLast = false;
     this.active = step.active;
     this.index = null;
 }
@@ -33,11 +31,9 @@ module.exports = function render(data, out) {
 
     var activeIndex = -1;
 
-    // Invoke the body function to discover nested <ui-step> tags
-    data.invokeBody({ // Invoke the body with the scoped "steps" variable
+    // Invoke the body function to discover nested <app-progress-bar-step> tags
+    data.invokeBody({ // Invoke the body with the scoped "__progressBar" variable
         addStep: function(step) {
-
-
             step = new Step(step);
             step.index = steps.length;
 
@@ -55,17 +51,14 @@ module.exports = function render(data, out) {
     }
 
     if (steps.length) {
-        steps[0].isFirst = true;
-        steps[steps.length-1].isLast = true;
         steps[activeIndex].active = true;
     }
-
 
     // Now render the markup for the steps:
     template.render({
             widgetConfig: {
                 activeIndex: activeIndex,
-                steps: steps.map(function(step) {
+                steps: steps.map(function(step) { // Pass an array of the step names to the widget
                     return step.label;
                 })
             },

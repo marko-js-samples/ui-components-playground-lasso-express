@@ -1,14 +1,20 @@
 <div class="app-overlay" w-bind="./widget">
     <div class="app-overlay-mask" w-el-id="mask"></div>
     <div class="app-overlay-container"
-        style="width: ${data.width}px; margin-left: -${data.halfWidth}px">
+        style="width: ${data.width}px;">
         <div class="app-overlay-body" w-el-id="body">
             <invoke function="data.invokeBody()" if="data.invokeBody"/>
         </div>
         <div class="app-overlay-footer">
-            <app-button label="Cancel" size="large" variant="secondary" w-id="cancelButton"/>
+            <app-button label="Cancel"
+                size="large"
+                variant="secondary"
+                w-id="cancelButton"/>
             &nbsp;
-            <app-button label="Done" size="large" variant="primary" w-id="doneButton"/>
+            <app-button label="Done"
+                size="large"
+                variant="primary"
+                w-id="doneButton"/>
         </div>
     </div>
 </div>

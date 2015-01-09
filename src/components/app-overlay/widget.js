@@ -5,7 +5,7 @@ function Widget() {
     var isVisible = false;
     var bodyEl = this.getEl('body');
 
-    this.show = function() {
+    this.show = function show() {
         if (isVisible) {
             return;
         }
@@ -19,7 +19,7 @@ function Widget() {
         _this.emit('show');
     };
 
-    var hide = this.hide = function() {
+    var hide = this.hide = function hide() {
         if (!isVisible) {
             return;
         }
@@ -31,7 +31,7 @@ function Widget() {
         _this.emit('hide');
     };
 
-    this.getBodyEl = function() {
+    this.getBodyEl = function getBodyEl() {
         return bodyEl;
     };
 
@@ -50,6 +50,8 @@ function Widget() {
     });
 
     this.widgets.cancelButton.on('click', function() {
+        _this.emit('cancel', {});
+
         hide();
     });
 

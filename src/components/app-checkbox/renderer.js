@@ -3,9 +3,19 @@ var template = require('marko').load(require.resolve('./template.marko'));
 module.exports = function(input, out) {
     var label = input.label;
     var checked = input.checked === true;
-    var className = input['class'];
+    var className = 'app-checkbox';
+
+    if (input['class']) {
+        className += ' ' + input['class'];
+    }
+
+    if (checked) {
+        className += ' checked';
+    }
 
     template.render({
+            // widgetConfig is a special property that is used to control
+            // what data gets passed to the widget constructor
             widgetConfig: {
                 data: input.data
             },

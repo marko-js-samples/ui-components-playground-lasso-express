@@ -1,0 +1,10 @@
+{
+    "dependencies": [
+        "require: ./widget",
+        {
+            "path": "./style.less",
+            "imports": [ "require:src/global-style/variables.less" ]
+        },
+        "src/components/app-notification/optimizer.json"
+    ]
+}
