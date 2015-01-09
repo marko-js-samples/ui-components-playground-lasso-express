@@ -17,7 +17,7 @@ require('optimizer').configure({
 
 var app = express();
 
-var port = 8080;
+var port = process.env.PORT || 8080;
 
 app.use(compression()); // Enable gzip compression for all HTTP responses
 app.use('/static', serveStatic(__dirname + '/static'));
