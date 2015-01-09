@@ -1,0 +1,84 @@
+<optimizer-page package-path="./optimizer.json" />
+
+<layout-use template="src/layouts/default/template.marko">
+    <layout-put into="body">
+        <div w-bind="./widget" c-space="preserve">
+            <fieldset>
+                <legend>Checkboxes</legend>
+                <app-checkbox label="Foo"/>
+                <app-checkbox label="Bar" checked/>
+            </fieldset>
+            <fieldset>
+                <legend>Buttons</legend>
+
+                <h2>Secondary</h2>
+
+                <app-button label="small" size="small" variant="secondary"/>
+
+                <app-button label="normal" size="normal" variant="secondary"/>
+
+                <app-button label="large" size="large" variant="secondary"/>
+
+                <h2>Primary</h2>
+
+                <app-button label="small" size="small" variant="primary"/>
+
+                <app-button label="normal" size="normal" variant="primary"/>
+
+                <app-button label="large" size="large" variant="primary"/>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Overlays</legend>
+
+                <app-button label="Show Overlay"
+                    variant="primary"
+                    w-id="showOverlayButton"/>
+
+                <app-overlay w-id="overlay">
+                    <h2>Overlay Demo</h2>
+                    This is an overlay!
+                </app-overlay>
+            </fieldset>
+
+            <fieldset>
+                <legend>Miscellaneous</legend>
+
+                <app-progress-bar>
+                    <app-progress-bar-step name="contact-info">
+                        Contact Info
+                    </app-progress-bar-step>
+                    <app-progress-bar-step name="interests">
+                        Interests
+                    </app-progress-bar-step>
+                    <app-progress-bar-step name="family">
+                        Family
+                    </app-progress-bar-step>
+                </app-progress-bar>
+            </fieldset>
+
+            <fieldset>
+                <legend>Client-side Rendering</legend>
+
+                <app-button label="Render a button"
+                    w-id="renderButtonButton"/>
+
+                <app-button label="Render a checkbox"
+                    w-id="renderCheckboxButton"/>
+
+                <div w-el-id="renderTarget" class="render-target"/>
+            </fieldset>
+
+            <fieldset>
+                <legend>Maps</legend>
+
+                <app-map width="400px"
+                    height="400px"
+                    lat="37.774929"
+                    lng="-122.419416"/>
+            </fieldset>
+        </div>
+
+    </layout-put>
+</layout-use>

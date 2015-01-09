@@ -1,0 +1,14 @@
+{
+    "dependencies": [
+        "require: marko-widgets",
+        "require: jquery",
+        "require: ./widget",
+        "style.css",
+        "src/global-style/optimizer.json",
+        "src/components/app-checkbox/optimizer.json",
+        "src/components/app-button/optimizer.json",
+        "src/components/app-overlay/optimizer.json",
+        "src/components/app-map/optimizer.json",
+        "src/components/app-progress-bar/optimizer.json"
+    ]
+}

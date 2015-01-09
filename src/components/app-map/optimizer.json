@@ -1,0 +1,13 @@
+{
+    "dependencies": [
+        "require: ./widget",
+        {
+            "type": "js",
+            "url": "https://maps.googleapis.com/maps/api/js"
+        },
+        {
+            "type": "css",
+            "url": "https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+        }
+    ]
+}

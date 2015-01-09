@@ -1,0 +1,18 @@
+<div class="app-progress-bar" w-bind="./widget">
+    <div class="${step.getClassNames()}"
+        data-progress-step-index="${step.index}"
+        w-el-id="step${step.index}"
+        for="step in data.steps">
+
+        <a href="#" class="progress-step">
+            <invoke function="step.invokeBody()" if="step.invokeBody"/>
+            <div class="completion-icon"></div>
+        </a>
+        <div class="progress-step-end">
+            <svg class="progress-step-end" viewBox="0 0 125 100" overflow="visible" enable-background="new 0 0 100 100" xml:space="preserve" preserveAspectRatio="none">
+                <polygon points="0,0 25,0 125,50 25,100 0,100" fill="white"/>
+                <polygon class="progress-step-end" points="0,0 100,50 0,100"/>
+            </svg>
+        </div>
+    </div>
+</div>

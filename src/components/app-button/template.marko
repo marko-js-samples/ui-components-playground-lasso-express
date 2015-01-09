@@ -1,0 +1,8 @@
+<button attrs="data.rootAttrs" w-bind="./widget">
+    <if test="data.label">
+        ${data.label}
+    </if>
+    <else-if test="data.invokeBody">
+        <invoke function="data.invokeBody()"/>
+    </else-if>
+</button>

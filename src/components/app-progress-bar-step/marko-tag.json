@@ -1,0 +1,9 @@
+{
+    "attributes": {
+        "name": "string",
+        "active": "boolean"
+    },
+    "import-var": {
+        "progressBar": "__progressBar"
+    }
+}
