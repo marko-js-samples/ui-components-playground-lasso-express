@@ -1,32 +1,36 @@
-function Widget(widgetConfig) {
-    var $el = this.$();
+exports.extend = function(widget, widgetConfig) {
+    var $el = widget.$();
 
-    this.data = widgetConfig.data;
-
-    var _this = this;
-
-    this.$().click(function() {
-        $el.toggleClass('checked');
-
-        _this.emit('toggle', {
-            checked: _this.isChecked(),
-            data: widgetConfig.data
-        });
-    });
+    widget.data = widgetConfig.data;
+    var checked = $el.hasClass('checked');
 
     function isChecked() {
-        return $el.hasClass('checked');
+        return checked;
     }
 
-    this.isChecked = isChecked;
+    function setChecked(newChecked) {
+        if (checked === newChecked) {
+            return;
+        }
 
-    this.setChecked = function(isChecked) {
-        if (isChecked) {
+        checked = newChecked;
+
+        if (checked) {
             $el.addClass('checked');
         } else {
             $el.removeClass('checked');
         }
-    };
-}
 
-module.exports = Widget;
+        widget.emit('toggle', {
+            checked: checked,
+            data: widgetConfig.data
+        });
+    }
+
+    widget.on('click', function() {
+        setChecked(!checked);
+    });
+
+    widget.isChecked = isChecked;
+    widget.setChecked = setChecked;
+};
