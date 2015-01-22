@@ -11,6 +11,6 @@
         "src/components/app-notifications/optimizer.json",
         "src/components/app-map/optimizer.json",
         "src/components/app-progress-bar/optimizer.json",
-        "style.css"
+        "style.less"
     ]
 }

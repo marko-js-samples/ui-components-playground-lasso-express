@@ -1,9 +1,6 @@
 {
     "dependencies": [
         "require: ./widget",
-        {
-            "path": "./style.less",
-            "imports": [ "require:src/global-style/variables.less" ]
-        }
+        "style.less"
     ]
 }

@@ -1,5 +1,6 @@
 {
     "dependencies": [
+        "less-import: variables.less",
         "style.less"
     ]
 }
