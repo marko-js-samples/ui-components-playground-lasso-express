@@ -17,7 +17,7 @@ function Widget() {
         setTimeout(function() {
             _this.destroy();
         }, 300);
-    }
+    };
 }
 
 module.exports = Widget;
