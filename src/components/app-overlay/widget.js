@@ -1,5 +1,4 @@
 function Widget() {
-    var $mask = this.$('#mask');
     var _this = this;
     var $el = this.$();
     var isVisible = false;
@@ -55,7 +54,9 @@ function Widget() {
         hide();
     });
 
-    $mask.click(hide);
+    this.handleMaskClick = function() {
+        hide();
+    };
 }
 
 module.exports = Widget;

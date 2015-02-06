@@ -1,5 +1,7 @@
 <div class="app-overlay" w-bind="./widget">
-    <div class="app-overlay-mask" w-el-id="mask"></div>
+    <div class="app-overlay-mask"
+        w-onclick="handleMaskClick"/>
+
     <div class="app-overlay-container"
         style="width: ${data.width}px;">
         <div class="app-overlay-body" w-el-id="body">
