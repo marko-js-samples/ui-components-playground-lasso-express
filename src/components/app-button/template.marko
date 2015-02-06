@@ -1,4 +1,7 @@
-<button attrs="data.rootAttrs" w-bind="./widget">
+<button attrs="data.rootAttrs"
+    w-onclick="handleClick"
+    w-bind="./widget">
+
     <if test="data.label">
         ${data.label}
     </if>
