@@ -25,14 +25,14 @@
     "compression": "^1.2.0",
     "express": "^4.9.4",
     "jquery": "^2.1.3",
-    "marko": "^1.3.12",
-    "marko-widgets": "^1.4.0",
-    "optimizer": "^1.6.0",
-    "optimizer-less": "^2.0.0",
-    "optimizer-marko": "^1.1.3",
+    "marko": "^1.5.5",
+    "marko-widgets": "^1.5.0",
+    "optimizer": "^1.7.0",
+    "optimizer-less": "^2.0.1",
+    "optimizer-marko": "^1.1.4",
     "raptor-dom": "^1.0.3",
     "raptor-pubsub": "^1.0.5",
-    "raptor-renderer": "^1.1.8",
+    "raptor-renderer": "^1.1.9",
     "serve-static": "^1.6.2"
   }
 }
