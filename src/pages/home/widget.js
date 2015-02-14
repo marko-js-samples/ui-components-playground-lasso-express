@@ -93,4 +93,4 @@ function Widget(config) {
     showChecked();
 }
 
-module.exports = Widget;
+exports.Widget = Widget;

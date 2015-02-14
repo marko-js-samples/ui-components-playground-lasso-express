@@ -21,4 +21,4 @@ function Widget(config) {
 
 }
 
-module.exports = Widget;
+exports.Widget = Widget;

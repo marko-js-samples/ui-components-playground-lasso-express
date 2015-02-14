@@ -53,4 +53,4 @@ function Widget(config) {
     this.setCurrentStepIndex = setCurrentStepIndex;
 }
 
-module.exports = Widget;
+exports.Widget = Widget;

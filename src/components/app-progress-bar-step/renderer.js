@@ -1,3 +1,3 @@
-module.exports = function(input, out) {
+exports.render = function(input, out) {
     input.progressBar.addStep(input);
 };

@@ -20,4 +20,4 @@ function Widget() {
     };
 }
 
-module.exports = Widget;
+exports.Widget = Widget;

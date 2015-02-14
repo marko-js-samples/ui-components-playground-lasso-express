@@ -1,6 +1,6 @@
 var template = require('marko').load(require.resolve('./template.marko'));
 
-module.exports = function(input, out) {
+exports.render = function(input, out) {
     var label = input.label;
     var checked = input.checked === true;
     var className = 'app-checkbox';

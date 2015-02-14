@@ -20,7 +20,7 @@ Step.prototype = {
     }
 };
 
-module.exports = function render(input, out) {
+exports.render = function(input, out) {
     var steps = input.steps;
 
     var activeIndex = -1;

@@ -1,6 +1,6 @@
 var template = require('marko').load(require.resolve('./template.marko'));
 
-module.exports = function(input, out) {
+exports.render = function(input, out) {
     var height = input.height;
     var width = input.width;
 
