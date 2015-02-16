@@ -26,7 +26,7 @@
     "express": "^4.9.4",
     "jquery": "^2.1.3",
     "marko": "^2.0.0",
-    "marko-widgets": "^2.0.4",
+    "marko-widgets": "^2.0.5",
     "optimizer": "^1.7.0",
     "optimizer-less": "^2.0.1",
     "optimizer-marko": "^1.1.4",
