@@ -1,5 +1,5 @@
 var raptorPubsub = require('raptor-pubsub');
-var raptorDom = require('raptor-dom');
+var dom = require('marko-widgets/dom');
 var markoWidgets = require('marko-widgets');
 var button = require('src/components/app-button');
 var checkbox = require('src/components/app-checkbox');
@@ -72,7 +72,7 @@ function Widget(config) {
         var checked = [];
 
         // You can can also get the widget associated with a DOM element:
-        raptorDom.forEachChildEl(_this.getEl('checkboxes'), function(checkboxEl) {
+        dom.forEachChildEl(_this.getEl('checkboxes'), function(checkboxEl) {
             var checkboxWidget = markoWidgets.getWidgetForEl(checkboxEl);
             if (checkboxWidget.isChecked()) {
                 checked.push(checkboxWidget.data.name);
@@ -84,7 +84,7 @@ function Widget(config) {
     // You can can also get the widget associated with a DOM element. We will
     // use that track to iterate over the checkboxes to iterate over all of
     // the checkboxes
-    raptorDom.forEachChildEl(this.getEl('checkboxes'), function(checkboxEl) {
+    dom.forEachChildEl(this.getEl('checkboxes'), function(checkboxEl) {
         var checkboxWidget = markoWidgets.getWidgetForEl(checkboxEl);
         _this.subscribeTo(checkboxWidget)
             .on('toggle', showChecked);
