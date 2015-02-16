@@ -20,7 +20,9 @@ Step.prototype = {
     }
 };
 
-exports.renderer = function(input, out) {
+// Export a render(input) method that can be used
+// to render this UI component on the client
+require('marko-widgets').renderable(exports, function render(input, out) {
     var steps = input.steps;
 
     var activeIndex = -1;
@@ -73,11 +75,7 @@ exports.renderer = function(input, out) {
             },
             steps: steps
         }, out);
-};
-
-// Export a render(input) method that can be used
-// to render this UI component on the client
-exports.render = require('marko-widgets').renderFunc(exports.renderer);
+});
 
 var $ = require('jquery');
 

@@ -1,12 +1,10 @@
 var template = require('marko').load(require.resolve('./template.marko'));
 
-exports.renderer = function(input, out) {
-    template.render(input, out);
-};
-
 // Export a render(input) method that can be used
 // to render this UI component on the client
-exports.render = require('marko-widgets').renderFunc(exports.renderer);
+require('marko-widgets').renderable(exports, function render(input, out) {
+    template.render(input, out);
+});
 
 var notificationHeight = 48;
 

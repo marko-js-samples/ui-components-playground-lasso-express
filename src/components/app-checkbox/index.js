@@ -1,6 +1,6 @@
 var template = require('marko').load(require.resolve('./template.marko'));
 
-exports.renderer = function(input, out) {
+require('marko-widgets').renderable(exports, function render(input, out) {
     var label = input.label;
     var checked = input.checked === true;
     var className = 'app-checkbox';
@@ -23,11 +23,8 @@ exports.renderer = function(input, out) {
             label: label,
             checked: checked
         }, out);
-};
+});
 
-// Export a render(input) method that can be used
-// to render this UI component on the client
-exports.render = require('marko-widgets').renderFunc(exports.renderer);
 
 exports.extendWidget = function(widget, widgetConfig) {
     var $el = widget.$();

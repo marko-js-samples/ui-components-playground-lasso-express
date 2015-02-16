@@ -1,6 +1,8 @@
 var template = require('marko').load(require.resolve('./template.marko'));
 
-exports.renderer = function(input, out) {
+// Export a render(input) method that can be used
+// to render this UI component on the client
+require('marko-widgets').renderable(exports, function render(input, out) {
 
     var rootAttrs = {};
 
@@ -46,11 +48,7 @@ exports.renderer = function(input, out) {
         label: input.label, // The button label can come from nested content or the label attribute
         rootAttrs: rootAttrs
     }, out);
-};
-
-// Export a render(input) method that can be used
-// to render this UI component on the client
-exports.render = require('marko-widgets').renderFunc(exports.renderer);
+});
 
 function Widget() {
 }

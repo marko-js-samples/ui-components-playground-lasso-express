@@ -1,6 +1,8 @@
 var template = require('marko').load(require.resolve('./template.marko'));
 
-exports.renderer = function(input, out) {
+// Export a render(input) method that can be used
+// to render this UI component on the client
+require('marko-widgets').renderable(exports, function render(input, out) {
     var height = input.height;
     var width = input.width;
 
@@ -23,11 +25,7 @@ exports.renderer = function(input, out) {
         style: style,
         className: input['class']
     }, out);
-};
-
-// Export a render(input) method that can be used
-// to render this UI component on the client
-exports.render = require('marko-widgets').renderFunc(exports.renderer);
+});
 
 function Widget(config) {
     var el = this.el;
