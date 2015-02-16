@@ -1,7 +1,19 @@
 var raptorPubsub = require('raptor-pubsub');
 var markoWidgets = require('marko-widgets');
 var notification = require('src/components/app-notification');
-var raptorDom = require('raptor-dom');
+var dom = require('marko-widgets/dom');
+
+var template = require('marko').load(require.resolve('./template.marko'));
+
+exports.renderer = function(input, out) {
+    template.render({}, out);
+};
+
+
+
+// Export a render(input) method that can be used
+// to render this UI component on the client
+exports.render = require('marko-widgets').renderFunc(exports.renderer);
 
 function Widget() {
     var el = this.el;
@@ -20,7 +32,7 @@ function Widget() {
 
     function moveDown() {
 
-        raptorDom.forEachChildEl(el, function(el) {
+        dom.forEachChildEl(el, function(el) {
             var notificationWidget = markoWidgets.getWidgetForEl(el);
             notificationWidget.moveDown();
 

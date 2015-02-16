@@ -1,3 +1,18 @@
+var template = require('marko').load(require.resolve('./template.marko'));
+
+exports.renderer = function(input, out) {
+    var width = input.width || 800;
+
+    template.render({
+        width: width,
+        invokeBody: input.invokeBody
+    }, out);
+};
+
+// Export a render(input) method that can be used
+// to render this UI component on the client
+exports.render = require('marko-widgets').renderFunc(exports.renderer);
+
 function Widget() {
     var _this = this;
     var $el = this.$();
