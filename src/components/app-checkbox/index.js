@@ -25,7 +25,6 @@ require('marko-widgets').renderable(exports, function render(input, out) {
         }, out);
 });
 
-
 exports.extendWidget = function(widget, widgetConfig) {
     var $el = widget.$();
 
