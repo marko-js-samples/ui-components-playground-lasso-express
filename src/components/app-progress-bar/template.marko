@@ -5,7 +5,7 @@
         for="step in data.steps">
 
         <a href="#" class="progress-step">
-            <invoke function="step.invokeBody()" if="step.invokeBody"/>
+            <invoke function="step.renderBody(out)" if="step.renderBody"/>
             <if test="step.label">
                 $step.label
             </if>

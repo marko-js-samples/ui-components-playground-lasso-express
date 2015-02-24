@@ -5,7 +5,7 @@
     <div class="app-overlay-container"
         style="width: ${data.width}px;">
         <div class="app-overlay-body" w-el-id="body">
-            <invoke function="data.invokeBody()" if="data.invokeBody"/>
+            <invoke function="data.renderBody(out)" if="data.renderBody"/>
         </div>
         <div class="app-overlay-footer">
             <app-button label="Cancel"

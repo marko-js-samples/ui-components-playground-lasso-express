@@ -1,7 +1,7 @@
 var template = require('marko').load(require.resolve('./template.marko'));
 
 function Step(step) {
-    this.invokeBody = step.invokeBody;
+    this.renderBody = step.renderBody;
     this.label = step.label;
     this.active = step.active;
     this.index = step.name;
@@ -37,11 +37,11 @@ require('marko-widgets').renderable(exports, function render(input, out) {
             step.active = false;
             return step;
         });
-    } else {
+    } else if (input.getSteps) {
         steps = [];
 
         // Invoke the body function to discover nested <app-progress-bar-step> tags
-        input.invokeBody({ // Invoke the body with the scoped "__progressBar" variable
+        input.getSteps({ // Invoke the body with the scoped "__progressBar" variable
             addStep: function(step) {
                 step = new Step(step);
                 step.index = steps.length;
@@ -53,9 +53,9 @@ require('marko-widgets').renderable(exports, function render(input, out) {
                 steps.push(step);
             }
         });
+    } else {
+        steps = [];
     }
-
-
 
     if (activeIndex === -1) {
         activeIndex = 0;

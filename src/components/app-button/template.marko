@@ -5,6 +5,6 @@
     <if test="data.label">
         ${data.label}
     </if>
-    <invoke function="data.invokeBody()"
-        else-if="data.invokeBody"/>
+    <invoke function="data.renderBody(out)"
+        else-if="data.renderBody"/>
 </button>

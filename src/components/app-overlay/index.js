@@ -7,7 +7,7 @@ require('marko-widgets').renderable(exports, function render(input, out) {
 
     template.render({
         width: width,
-        invokeBody: input.invokeBody
+        renderBody: input.renderBody
     }, out);
 });
 
