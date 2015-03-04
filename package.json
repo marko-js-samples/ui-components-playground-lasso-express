@@ -25,11 +25,11 @@
     "compression": "^1.2.0",
     "express": "^4.9.4",
     "jquery": "^2.1.3",
-    "marko": "^2.0.0",
-    "marko-widgets": "^2.0.5",
+    "marko": "^2.0.10",
+    "marko-widgets": "^3.0.0",
     "optimizer": "^1.7.0",
     "optimizer-less": "^2.0.1",
-    "optimizer-marko": "^1.1.4",
+    "optimizer-marko": "^2.0.0",
     "raptor-pubsub": "^1.0.5",
     "serve-static": "^1.6.2"
   }

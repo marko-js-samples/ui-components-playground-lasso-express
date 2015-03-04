@@ -1,7 +1,7 @@
 {
     "dependencies": [
         "src/components/app-button/optimizer.json",
-        "require: ./",
+        "require: ./widget",
         "style.less"
     ]
 }

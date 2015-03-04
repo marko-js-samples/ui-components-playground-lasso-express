@@ -1,6 +1,6 @@
 {
     "dependencies": [
-        "require: ./",
+        "require: ./widget",
         {
             "type": "js",
             "url": "https://maps.googleapis.com/maps/api/js"

@@ -6,48 +6,62 @@ var checkbox = require('src/components/app-checkbox');
 var progressBar = require('src/components/app-progress-bar');
 
 function Widget(config) {
-    var widgets = this.widgets;
-    var renderTarget = this.getEl('renderTarget');
-    var _this = this;
+}
 
-    widgets.showOverlayButton.on('click', function() {
-        widgets.overlay.show();
-    });
+Widget.prototype = {
+    updateChecked: function() {
+        var checked = [];
+        var $checked = this.$('#checked');
+        var checkboxes = this.getEl('checkboxes');
 
-    widgets.showNotificationButton.on('click', function() {
+        // You can can also get the widget associated with a DOM element:
+        dom.forEachChildEl(checkboxes, function(checkboxEl) {
+            var checkboxWidget = markoWidgets.getWidgetForEl(checkboxEl);
+            if (checkboxWidget.isChecked()) {
+                checked.push(checkboxWidget.data.name);
+            }
+            $checked.html(checked.length ? checked.join(', ') : '(none)');
+        });
+    },
+
+    handleShowOverlayButtonClick: function() {
+        this.getWidget('overlay').show();
+    },
+
+    handleShowNotificationButtonClick: function() {
         raptorPubsub.emit('notification', {
             message: 'This is a notification'
         });
-    });
+    },
 
-    widgets.overlay
-        .on('ok', function() {
-            raptorPubsub.emit('notification', {
-                message: 'You clicked the "Done" button!'
-            });
-        })
-        .on('cancel', function() {
-            raptorPubsub.emit('notification', {
-                message: 'You clicked the "Cancel" button!'
-            });
+    handleOverlayOk: function() {
+        raptorPubsub.emit('notification', {
+            message: 'You clicked the "Done" button!'
         });
+    },
 
-    widgets.renderButtonButton.on('click', function() {
+    handleOverlayCancel: function() {
+        raptorPubsub.emit('notification', {
+            message: 'You clicked the "Cancel" button!'
+        });
+    },
+
+    handleRenderButtonClick: function() {
         button.render({
                 label: 'Hello World'
             })
-            .appendTo(renderTarget);
-    });
+            .appendTo(this.getEl('renderTarget'));
+    },
 
-    widgets.renderCheckboxButton.on('click', function() {
+    handleRenderCheckboxButtonClick: function() {
         checkbox.render({
-            label: 'Hello World',
-            checked: true
-        })
-        .appendTo(renderTarget);
-    });
+                label: 'Hello World',
+                checked: true
+            })
+            .appendTo(this.getEl('renderTarget'));
+    },
 
-    widgets.renderProgressBarButton.on('click', function() {
+    handleRenderProgressBarButtonClick: function() {
         progressBar.render({
                 steps: [
                     {
@@ -65,32 +79,8 @@ function Widget(config) {
                     }
                 ]
             })
-            .appendTo(renderTarget);
-    });
-
-    function showChecked() {
-        var checked = [];
-
-        // You can can also get the widget associated with a DOM element:
-        dom.forEachChildEl(_this.getEl('checkboxes'), function(checkboxEl) {
-            var checkboxWidget = markoWidgets.getWidgetForEl(checkboxEl);
-            if (checkboxWidget.isChecked()) {
-                checked.push(checkboxWidget.data.name);
-            }
-            _this.$('#checked').html(checked.length ? checked.join(', ') : '(none)');
-        });
+            .appendTo(this.getEl('renderTarget'));
     }
-
-    // You can can also get the widget associated with a DOM element. We will
-    // use that track to iterate over the checkboxes to iterate over all of
-    // the checkboxes
-    dom.forEachChildEl(this.getEl('checkboxes'), function(checkboxEl) {
-        var checkboxWidget = markoWidgets.getWidgetForEl(checkboxEl);
-        _this.subscribeTo(checkboxWidget)
-            .on('toggle', showChecked);
-    });
-
-    showChecked();
-}
+};
 
 exports.Widget = Widget;

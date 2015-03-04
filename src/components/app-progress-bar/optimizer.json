@@ -1,6 +1,6 @@
 {
     "dependencies": [
-        "require: ./",
+        "require: ./widget",
         "style.less"
     ]
 }

@@ -1,6 +1,6 @@
 {
     "dependencies": [
-        "require: ./",
+        "require: ./widget",
         "style.less",
         "src/components/app-notification/optimizer.json"
     ]

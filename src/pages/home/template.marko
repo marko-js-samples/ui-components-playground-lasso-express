@@ -8,13 +8,13 @@
         <div w-bind="./widget" c-space="preserve">
             <fieldset>
                 <legend>Checkboxes</legend>
-                <div w-el-id="checkboxes">
-                    <app-checkbox label="Foo" data="{name: 'foo'}"/>
-                    <app-checkbox label="Bar" data="{name: 'bar'}" checked/>
-                    <app-checkbox label="Baz" data="{name: 'baz'}"/>
+                <div w-id="checkboxes">
+                    <app-checkbox label="Foo" data="{name: 'foo'}" w-onToggle="updateChecked"/>
+                    <app-checkbox label="Bar" data="{name: 'bar'}" checked w-onToggle="updateChecked"/>
+                    <app-checkbox label="Baz" data="{name: 'baz'}" w-onToggle="updateChecked"/>
                 </div>
                 <div>
-                    <b>Checked</b>: <span w-el-id="checked"/>
+                    <b>Checked</b>: <span w-id="checked"/>
                 </div>
 
             </fieldset>
@@ -48,15 +48,18 @@
 
                 <app-button label="Show Overlay"
                     variant="primary"
-                    w-id="showOverlayButton"/>
+                    w-onClick="handleShowOverlayButtonClick"/>
 
                 <app-button label="Show Notification"
                     variant="primary"
-                    w-id="showNotificationButton"/>
+                    w-onClick="handleShowNotificationButtonClick"/>
 
                 <app-notifications/>
 
-                <app-overlay w-id="overlay">
+                <app-overlay
+                    w-onOk="handleOverlayOk"
+                    w-onCancel="handleOverlayCancel"
+                    w-id="overlay">
                     <h2>Overlay Demo</h2>
                     This is an overlay!
                 </app-overlay>
@@ -82,15 +85,15 @@
                 <legend>Client-side Rendering</legend>
 
                 <app-button label="Render a button"
-                    w-id="renderButtonButton"/>
+                    w-onClick="handleRenderButtonClick"/>
 
                 <app-button label="Render a checkbox"
-                    w-id="renderCheckboxButton"/>
+                    w-onClick="handleRenderCheckboxButtonClick"/>
 
                 <app-button label="Render a progress bar"
-                    w-id="renderProgressBarButton"/>
+                    w-onClick="handleRenderProgressBarButtonClick"/>
 
-                <div w-el-id="renderTarget" class="render-target"/>
+                <div w-id="renderTarget" class="render-target"/>
             </fieldset>
 
             <fieldset>

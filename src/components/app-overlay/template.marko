@@ -1,22 +1,22 @@
-<div class="app-overlay" w-bind>
+<div class="app-overlay" w-bind="./widget">
     <div class="app-overlay-mask"
         w-onclick="handleMaskClick"/>
 
     <div class="app-overlay-container"
         style="width: ${data.width}px;">
-        <div class="app-overlay-body" w-el-id="body">
+        <div class="app-overlay-body" w-id="body">
             <invoke function="data.renderBody(out)" if="data.renderBody"/>
         </div>
         <div class="app-overlay-footer">
             <app-button label="Cancel"
                 size="large"
                 variant="secondary"
-                w-id="cancelButton"/>
+                w-onClick="handleCancelButtonClick"/>
             &nbsp;
             <app-button label="Done"
                 size="large"
                 variant="primary"
-                w-id="doneButton"/>
+                w-onClick="handleDoneButtonClick"/>
         </div>
     </div>
 </div>

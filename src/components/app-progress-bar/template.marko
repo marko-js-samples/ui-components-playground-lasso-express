@@ -1,7 +1,8 @@
-<div class="app-progress-bar" w-bind="./">
+<div class="app-progress-bar" w-bind="./widget">
     <div class="${step.getClassNames()}"
         data-progress-step-index="${step.index}"
-        w-el-id="step${step.index}"
+        w-id="step${step.index}"
+        w-onclick="handleStepClick"
         for="step in data.steps">
 
         <a href="#" class="progress-step">
