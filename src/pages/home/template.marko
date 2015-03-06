@@ -9,12 +9,30 @@
             <fieldset>
                 <legend>Checkboxes</legend>
                 <div w-id="checkboxes">
-                    <app-checkbox label="Foo" data="{name: 'foo'}" w-onToggle="updateChecked"/>
-                    <app-checkbox label="Bar" data="{name: 'bar'}" checked w-onToggle="updateChecked"/>
-                    <app-checkbox label="Baz" data="{name: 'baz'}" w-onToggle="updateChecked"/>
+                    <app-checkbox
+                        label="Foo"
+                        data="{name: 'foo'}"
+                        checked="data.checked.foo"
+                        w-onToggle="updateChecked"/>
+                    <app-checkbox
+                        label="Bar" data="{name: 'bar'}"
+                        checked="data.checked.bar"
+                        w-onToggle="updateChecked"/>
+                    <app-checkbox
+                        label="Baz"
+                        data="{name: 'baz'}"
+                        checked="data.checked.baz"
+                        w-onToggle="updateChecked"/>
                 </div>
                 <div>
-                    <b>Checked</b>: <span w-id="checked"/>
+                    <b>Checked</b>:
+                    <div w-id="checkedDiv">
+                        <ul>
+                            <li for="checkedItem in data.checkedList">
+                                $checkedItem
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </fieldset>
@@ -40,6 +58,18 @@
                         </td>
                     </tr>
                 </table>
+
+                <div>
+                    <app-button label="Change Button Size" size="small" variant="primary"
+                        w-onClick="handleChangeButtonSizeClick"/>
+                </div>
+                <div>
+                    <app-checkbox label="Foo" checked data="{name: 'foo'}" w-id="toggleCheckbox"/>
+
+                    <app-button label="Toggle Checkbox" size="small" variant="primary"
+                        w-onClick="handleToggleCheckboxButtonClick"/>
+                </div>
+
 
             </fieldset>
 

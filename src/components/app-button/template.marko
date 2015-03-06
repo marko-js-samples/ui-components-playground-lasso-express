@@ -1,10 +1,6 @@
 <button attrs="data.rootAttrs"
     w-onclick="handleClick"
-    w-bind="./widget">
+    w-bind>
 
-    <if test="data.label">
-        ${data.label}
-    </if>
-    <invoke function="data.renderBody(out)"
-        else-if="data.renderBody"/>
+    <span w-body="data.label || data.renderBody"/>
 </button>

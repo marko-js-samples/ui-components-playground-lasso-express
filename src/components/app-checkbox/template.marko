@@ -1,6 +1,7 @@
 <app-button class="$data.className"
-    w-extend="./widget">
+    w-extend>
 
-    <span class="app-checkbox-icon"/>$data.label
+    <span class="app-checkbox-icon"/>
+    <span w-id="checkboxLabel" w-body="data.label || data.renderBody"/>
 
 </app-button>

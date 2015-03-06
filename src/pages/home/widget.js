@@ -1,27 +1,35 @@
 var raptorPubsub = require('raptor-pubsub');
-var dom = require('marko-widgets/dom');
-var markoWidgets = require('marko-widgets');
 var button = require('src/components/app-button');
 var checkbox = require('src/components/app-checkbox');
 var progressBar = require('src/components/app-progress-bar');
+var extend = require('raptor-util/extend');
+
+var buttonSizes = ['small', 'normal', 'large'];
+var currentButtonSize = 0;
 
 function Widget(config) {
 }
 
 Widget.prototype = {
-    updateChecked: function() {
-        var checked = [];
-        var $checked = this.$('#checked');
-        var checkboxes = this.getEl('checkboxes');
+    updateChecked: function(event, sourceWidget) {
+        var name = event.data.name;
 
-        // You can can also get the widget associated with a DOM element:
-        dom.forEachChildEl(checkboxes, function(checkboxEl) {
-            var checkboxWidget = markoWidgets.getWidgetForEl(checkboxEl);
-            if (checkboxWidget.isChecked()) {
-                checked.push(checkboxWidget.data.name);
-            }
-            $checked.html(checked.length ? checked.join(', ') : '(none)');
+        // Create objects in the state as immutable. Create
+        // a new object that represents the change in checked
+        // state
+        var newChecked = extend({}, this.state.checked);
+        newChecked[name] = event.checked;
+        this.setState('checked', newChecked);
+    },
+
+    doUpdate: function(changedState, oldState) {
+        var checked = this.state.checked;
+
+        var checkedItems = Object.keys(checked).filter(function(name) {
+            return checked[name] === true;
         });
+
+        this.getEl('checkedDiv').innerHTML = checkedItems.join(', ');
     },
 
     handleShowOverlayButtonClick: function() {
@@ -80,6 +88,17 @@ Widget.prototype = {
                 ]
             })
             .appendTo(this.getEl('renderTarget'));
+    },
+
+    handleChangeButtonSizeClick: function(event, button) {
+        var nextButtonSize = buttonSizes[++currentButtonSize % buttonSizes.length];
+        button.setSize(nextButtonSize);
+        button.setLabel('Change Button Size - ' + nextButtonSize);
+    },
+
+    handleToggleCheckboxButtonClick: function(event) {
+        var checkbox = this.getWidget('toggleCheckbox');
+        checkbox.toggle();
     }
 };
 
