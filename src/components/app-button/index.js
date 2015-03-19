@@ -1,61 +1,56 @@
-var template = require('marko').load(require.resolve('./template.marko'));
+module.exports = require('marko-widgets').defineWidget({
+    template: require.resolve('./template.marko'),
+    getInitialState: function(input) {
+        return {
+            size: input.size || 'normal',
+            variant: input.variant || 'primary',
+            className: input['class'],
+            attrs: input['*']
+        };
+    },
 
-function renderer(input, out) {
-    var rootAttrs = {};
+    getWidgetBody: function(state, input) {
+        return input.label || input.renderBody;
+    },
+    getTemplateData: function(state, input) {
+        var rootAttrs = {};
 
-    // The logic to determine the class names to apply to the root
-    // element is relatively complex since it is based on the 'variant'
-    // and the 'size' input so we are going to build the class names
-    // in JavaScript instead of in the template.
-    var classParts = ['app-button'];
+        var classParts = ['app-button'];
 
-    var type = 'button';
+        var type = 'button';
 
-    var variant = input.variant || 'primary';
-    if (variant && variant !== 'primary') {
-        classParts.push('app-button-' + variant);
-    }
+        var variant = state.variant;
+        if (variant !== 'primary') {
+            classParts.push('app-button-' + variant);
+        }
 
-    var size = input.size || 'normal';
-    if (size && size !== 'normal') {
-        classParts.push('app-button-' + size);
-    }
+        var size = state.size;
+        if (size !== 'normal') {
+            classParts.push('app-button-' + size);
+        }
 
-    var splatAttrs = input['*'];
-    if (splatAttrs) {
-        var className = splatAttrs['class'];
+        var className = state.className;
         if (className) {
-            delete splatAttrs['class'];
             classParts.push(className);
         }
 
-        for (var splatAttr in splatAttrs) {
-            if (splatAttrs.hasOwnProperty(splatAttr)) {
-                rootAttrs[splatAttr] = splatAttrs[splatAttr];
+        var splatAttrs = state.attrs;
+        if (splatAttrs) {
+            for (var splatAttr in splatAttrs) {
+                if (splatAttrs.hasOwnProperty(splatAttr)) {
+                    rootAttrs[splatAttr] = splatAttrs[splatAttr];
+                }
             }
         }
-    }
 
-    rootAttrs['class'] = classParts.join(' ');
+        rootAttrs['class'] = classParts.join(' ');
 
-    template.render({
-        type: type,
-        widgetState: {
-            size: size,
-            variant: variant,
-            '*': splatAttrs
-        },
-        renderBody: input.renderBody, // renderBody is a function we can use to render nested
-                                      // content. will be undefined if no nested content.
-        label: input.label, // The button label can come from nested content or the label attribute
-        rootAttrs: rootAttrs
-    }, out);
-}
+        return {
+            type: type,
+            rootAttrs: rootAttrs
+        };
+    },
 
-function Widget() {
-}
-
-Widget.prototype = {
     handleClick: function(event) {
         // Every Widget instance is also an EventEmitter instance.
         // We will emit a custom "click" event when a DOM click event
@@ -77,8 +72,4 @@ Widget.prototype = {
     setLabel: function(label) {
         this.setState('label', label);
     }
-};
-
-exports.Widget = Widget;
-
-require('marko-widgets').makeRenderable(exports, renderer);
+});

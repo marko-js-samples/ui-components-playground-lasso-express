@@ -1,0 +1,156 @@
+<div w-bind="./" c-space="preserve">
+    <!-- <app-button label="Change Button Size - ${data.buttonSize}"
+        size="${data.buttonSize}"
+        variant="primary"
+        w-onClick="handleChangeButtonSizeClick"
+        w-id="resizableButton"/>
+
+    <app-checkbox
+        label="Baz"
+        data="{name: 'baz'}"
+        checked="true"
+        w-id="myCheckbox"/> -->
+
+    <fieldset>
+        <legend>Checkboxes</legend>
+        <div w-id="checkboxes">
+            <app-checkbox
+                label="Bar" data="{name: 'bar'}"
+                checked="data.checked.bar"
+                w-onToggle="handleCheckboxToggle"/>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Checkboxes</legend>
+        <div w-id="checkboxes">
+            <app-checkbox
+                label="Foo"
+                data="{name: 'foo'}"
+                checked="data.checked.foo"
+                w-onToggle="handleCheckboxToggle"/>
+            <app-checkbox
+                label="Bar" data="{name: 'bar'}"
+                checked="data.checked.bar"
+                w-onToggle="handleCheckboxToggle"/>
+            <app-checkbox
+                label="Baz"
+                data="{name: 'baz'}"
+                checked="data.checked.baz"
+                w-onToggle="handleCheckboxToggle"/>
+        </div>
+        <div>
+            <b>Checked</b>:
+            <div w-id="checkedDiv">
+                <ul>
+                    <li for="checkedItem in data.checkedList">
+                        $checkedItem
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </fieldset>
+    <fieldset>
+        <legend>Buttons</legend>
+
+        <table>
+            <tr>
+                <td><b>Primary: </b></td>
+                <td>
+                    <app-button label="small" size="small" variant="primary"/>
+                    <app-button label="normal" size="normal" variant="primary"/>
+                    <app-button label="large" size="large" variant="primary"/>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Secondary:&nbsp;</b></td>
+                <td>
+                    <app-button label="small" size="small" variant="secondary"/>
+                    <app-button label="normal" size="normal" variant="secondary"/>
+                    <app-button label="large" size="large" variant="secondary"/>
+                </td>
+            </tr>
+        </table>
+
+        <div>
+            <app-button label="Change Button Size - ${data.buttonSize}"
+                size="${data.buttonSize}"
+                variant="primary"
+                w-onClick="handleChangeButtonSizeClick"
+                w-id="resizableButton"/>
+        </div>
+        <div>
+            <app-checkbox label="Foo" checked data="{name: 'foo'}" w-id="toggleCheckbox"/>
+
+            <app-button label="Toggle Checkbox" size="small" variant="primary"
+                w-onClick="handleToggleCheckboxButtonClick"/>
+        </div>
+
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Overlays</legend>
+
+        <app-button label="Show Overlay"
+            variant="primary"
+            w-onClick="handleShowOverlayButtonClick"/>
+
+        <app-button label="Show Notification"
+            variant="primary"
+            w-onClick="handleShowNotificationButtonClick"/>
+
+        <app-notifications w-id="notifications" w-preserve/>
+
+        <app-overlay
+            w-onOk="handleOverlayOk"
+            w-onCancel="handleOverlayCancel"
+            w-id="overlay">
+            <h2>Overlay Demo</h2>
+            This is an overlay!
+        </app-overlay>
+    </fieldset>
+
+    <fieldset>
+        <legend>Miscellaneous</legend>
+
+        <app-progress-bar>
+            <app-progress-bar-step name="contact-info">
+                Contact Info
+            </app-progress-bar-step>
+            <app-progress-bar-step name="interests">
+                Interests
+            </app-progress-bar-step>
+            <app-progress-bar-step name="family">
+                Family
+            </app-progress-bar-step>
+        </app-progress-bar>
+    </fieldset>
+
+    <fieldset w-preserve>
+        <legend>Client-side Rendering</legend>
+
+        ${new Date()}
+
+        <app-button label="Render a button"
+            w-onClick="handleRenderButtonClick"/>
+
+        <app-button label="Render a checkbox"
+            w-onClick="handleRenderCheckboxButtonClick"/>
+
+        <app-button label="Render a progress bar"
+            w-onClick="handleRenderProgressBarButtonClick"/>
+
+        <div w-id="renderTarget" class="render-target" w-preserve-body/>
+    </fieldset>
+
+    <fieldset w-preserve>
+        <legend>Maps</legend>
+
+        <app-map width="400px"
+            height="400px"
+            lat="37.774929"
+            lng="-122.419416"/>
+    </fieldset>
+</div>

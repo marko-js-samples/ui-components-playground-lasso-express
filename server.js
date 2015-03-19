@@ -9,7 +9,7 @@ var serveStatic = require('serve-static');
 // a full process restart. You *should* use browser-refresh
 // in development: https://www.npmjs.com/package/browser-refresh
 require('marko/browser-refresh').enable();
-require('optimizer/browser-refresh').enable('*.marko *.css *.less');
+require('optimizer/browser-refresh').enable('*.marko *.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg');
 
 var isProduction = process.env.NODE_ENV === 'production';
 

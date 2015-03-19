@@ -3,34 +3,69 @@ var button = require('src/components/app-button');
 var checkbox = require('src/components/app-checkbox');
 var progressBar = require('src/components/app-progress-bar');
 var extend = require('raptor-util/extend');
+var defineWidget = require('marko-widgets').defineWidget;
 
 var buttonSizes = ['small', 'normal', 'large'];
 var currentButtonSize = 0;
 
-function Widget(config) {
-}
+module.exports = defineWidget({
+    template: require.resolve('./template.marko'),
 
-Widget.prototype = {
-    updateChecked: function(event, sourceWidget) {
+    getInitialState: function(input) {
+        return {
+            buttonSize: input.buttonSize || 'small',
+            checked: input.checked || {
+                foo: false,
+                bar: true,
+                baz: false
+            }
+        };
+    },
+
+    getTemplateData: function(state, input) {
+
+        var buttonSize = state.buttonSize;
+        var checked = state.checked;
+
+        var checkedList = Object.keys(checked).filter(function(k) {
+            return checked[k] === true;
+        });
+
+        return {
+            checkedList: checkedList,
+            checked: state.checked,
+            buttonSize: buttonSize
+        };
+    },
+
+    handleCheckboxToggle: function(event, sourceWidget) {
+        // event.preventDefault();
+
         var name = event.data.name;
 
-        // Create objects in the state as immutable. Create
-        // a new object that represents the change in checked
-        // state
+        // We tree complex objects stored in the state as immutable
+        // since only a shallow compare is done to see if the state
+        // has changed. Instead of modifying the "checked" object,
+        // we create a new object with the updated state of what is
+        // checked.
         var newChecked = extend({}, this.state.checked);
         newChecked[name] = event.checked;
         this.setState('checked', newChecked);
     },
 
-    doUpdate: function(changedState, oldState) {
-        var checked = this.state.checked;
+    // update_checked: function(newValue) {
+    //     var checkedItems = Object.keys(newValue).filter(function(name) {
+    //         return newValue[name] === true;
+    //     });
+    //
+    //     this.getEl('checkedDiv').innerHTML = checkedItems.join(', ');
+    // },
 
-        var checkedItems = Object.keys(checked).filter(function(name) {
-            return checked[name] === true;
-        });
-
-        this.getEl('checkedDiv').innerHTML = checkedItems.join(', ');
-    },
+    // update_buttonSize: function(newValue) {
+    //     var button = this.getWidget('resizableButton');
+    //     button.setSize(newValue);
+    //     button.setLabel('Change Button Size - ' + newValue);
+    // },
 
     handleShowOverlayButtonClick: function() {
         this.getWidget('overlay').show();
@@ -92,14 +127,11 @@ Widget.prototype = {
 
     handleChangeButtonSizeClick: function(event, button) {
         var nextButtonSize = buttonSizes[++currentButtonSize % buttonSizes.length];
-        button.setSize(nextButtonSize);
-        button.setLabel('Change Button Size - ' + nextButtonSize);
+        this.setState('buttonSize', nextButtonSize);
     },
 
     handleToggleCheckboxButtonClick: function(event) {
         var checkbox = this.getWidget('toggleCheckbox');
         checkbox.toggle();
     }
-};
-
-exports.Widget = Widget;
+});

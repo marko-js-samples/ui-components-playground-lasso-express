@@ -10,6 +10,10 @@
             "type": "string",
             "description": "small | normal | large"
         },
+        "class": {
+            "type": "string",
+            "description": "Additional CSS class names"
+        },
         "*": "string"
     }
 }

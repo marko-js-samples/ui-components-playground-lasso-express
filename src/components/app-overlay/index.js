@@ -5,7 +5,7 @@ function renderer(input, out) {
 
     template.render({
         width: width,
-        renderBody: input.renderBody
+        widgetBody: input.renderBody
     }, out);
 }
 

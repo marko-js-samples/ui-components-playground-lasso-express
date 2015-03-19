@@ -13,10 +13,11 @@ function Widget() {
     this.visible = false;
     var self = this;
 
-    raptorPubsub.on('notification', function(eventArgs) {
-        var message = eventArgs.message;
-        self.addNotification(message);
-    });
+    this.subscribeTo(raptorPubsub)
+        .on('notification', function(eventArgs) {
+            var message = eventArgs.message;
+            self.addNotification(message);
+        });
 }
 
 Widget.prototype = {

@@ -1,62 +1,72 @@
-var template = require('marko').load(require.resolve('./template.marko'));
+module.exports = require('marko-widgets').defineWidget({
+    template: require.resolve('./template.marko'),
+    getInitialState: function(input) {
+        return {
+            checked: input.checked === true,
+            checkboxClassName: input['class'] || input.checkboxClassName,
+            data: input.data
+        };
+    },
+    getTemplateData: function(state, input) {
+        var checked = state.checked;
+        var className = 'app-checkbox';
 
-function renderer(input, out) {
-    var label = input.label;
-    var checked = input.checked === true;
-    var className = 'app-checkbox';
-
-    if (input['class']) {
-        className += ' ' + input['class'];
-    }
-
-    if (checked) {
-        className += ' checked';
-    }
-
-    template.render({
-            // widgetConfig is a special property that is used to control
-            // what data gets passed to the widget constructor
-            widgetState: {
-                data: input.data,
-                checked: checked
-            },
-            className: className,
-            label: label,
-            renderBody: input.renderBody,
-            checked: checked
-        }, out);
-}
-
-exports.extendWidget = function(widget) {
-    function isChecked() {
-        return widget.state.checked === true;
-    }
-
-    function setChecked(newChecked) {
-        if (newChecked !== widget.state.checked) {
-            widget.setState('checked', !widget.state.checked);
-            widget.emit('toggle', {
-                checked: widget.state.checked,
-                data: widget.state.data
-            });
+        if (state.checkboxClassName) {
+            className += ' ' + state.checkboxClassName;
         }
+
+        if (checked) {
+            className += ' checked';
+        }
+
+        return {
+            className: className,
+            checked: checked
+        };
+    },
+    getWidgetBody: function(state, input) {
+        return input.label || input.renderBody;
+    },
+    extendWidget: function(widget) {
+        function isChecked() {
+            return widget.state.checked === true;
+        }
+
+        function setChecked(newChecked) {
+            if (newChecked !== widget.state.checked) {
+                widget.setState('checked', !widget.state.checked);
+            }
+        }
+
+        function toggle() {
+            setChecked(!widget.state.checked);
+        }
+
+        function getData() {
+            return widget.state.data;
+        }
+
+        widget.on('click', function() {
+            var newChecked = !widget.state.checked;
+
+            var defaultPrevented = false;
+
+            widget.emit('toggle', {
+                checked: newChecked,
+                data: widget.state.data,
+                preventDefault: function() {
+                    defaultPrevented = true;
+                }
+            });
+
+            if (!defaultPrevented) {
+                widget.setState('checked', newChecked);
+            }
+        });
+
+        widget.isChecked = isChecked;
+        widget.setChecked = setChecked;
+        widget.getData = getData;
+        widget.toggle = toggle;
     }
-
-    function toggle() {
-        setChecked(!widget.state.checked);
-    }
-
-    function getData() {
-        return widget.state.data;
-    }
-
-    widget.on('click', toggle);
-
-    widget.isChecked = isChecked;
-    widget.setChecked = setChecked;
-    widget.getData = getData;
-    widget.toggle = toggle;
-    widget.renderer = renderer;
-};
-
-require('marko-widgets').makeRenderable(exports, renderer);
+});

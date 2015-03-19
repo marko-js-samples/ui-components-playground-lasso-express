@@ -1,0 +1,12 @@
+{
+    "dependencies": [
+        "require: ./",
+        "../app-checkbox/optimizer.json",
+        "../app-button/optimizer.json",
+        "../app-overlay/optimizer.json",
+        "../app-notifications/optimizer.json",
+        "../app-map/optimizer.json",
+        "../app-progress-bar/optimizer.json",
+        "style.less"
+    ]
+}
