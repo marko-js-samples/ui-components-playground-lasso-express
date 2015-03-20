@@ -1,20 +1,23 @@
-var template = require('marko').load(require.resolve('./template.marko'));
+module.exports = require('marko-widgets').defineWidget({
+    template: require.resolve('./template.marko'),
 
-function renderer(input, out) {
-    var width = input.width || 800;
+    getTemplateData: function(state, input) {
+        var width = input.width || 800;
 
-    template.render({
-        width: width,
-        widgetBody: input.renderBody
-    }, out);
-}
+        return {
+            width: width
+        };
+    },
 
-function Widget() {
-    this.$el = this.$();
-    this._isVisible = false;
-}
+    getWidgetBody: function(state, input) {
+        return input.renderBody;
+    },
 
-Widget.prototype = {
+    init: function() {
+        this.$el = this.$();
+        this._isVisible = false;
+    },
+
     hide: function() {
         if (!this._isVisible) {
             return;
@@ -62,8 +65,4 @@ Widget.prototype = {
     getBodyEl: function getBodyEl() {
         return this.getEl('body');
     }
-};
-
-exports.Widget = Widget;
-
-require('marko-widgets').makeRenderable(exports, renderer);
+});

@@ -2,25 +2,26 @@ var raptorPubsub = require('raptor-pubsub');
 var markoWidgets = require('marko-widgets');
 var notification = require('src/components/app-notification');
 var dom = require('marko-widgets/dom');
-var template = require('marko').load(require.resolve('./template.marko'));
 
-function renderer(input, out) {
-    template.render({}, out);
-}
+module.exports = require('marko-widgets').defineWidget({
+    template: require.resolve('./template.marko'),
 
-function Widget() {
-    this.$el = this.$();
-    this.visible = false;
-    var self = this;
+    getTemplateData: function(input) {
+        return {};
+    },
 
-    this.subscribeTo(raptorPubsub)
-        .on('notification', function(eventArgs) {
-            var message = eventArgs.message;
-            self.addNotification(message);
-        });
-}
+    init: function() {
+        this.$el = this.$();
+        this.visible = false;
+        var self = this;
 
-Widget.prototype = {
+        this.subscribeTo(raptorPubsub)
+            .on('notification', function(eventArgs) {
+                var message = eventArgs.message;
+                self.addNotification(message);
+            });
+    },
+
     show: function() {
         if (this.visible) {
             return;
@@ -53,8 +54,4 @@ Widget.prototype = {
             notificationWidget.remove();
         }, 3000);
     }
-};
-
-exports.Widget = Widget;
-
-require('marko-widgets').makeRenderable(exports, renderer);
+});

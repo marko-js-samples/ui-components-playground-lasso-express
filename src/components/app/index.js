@@ -43,7 +43,7 @@ module.exports = defineWidget({
 
         var name = event.data.name;
 
-        // We tree complex objects stored in the state as immutable
+        // We treat complex objects stored in the state as immutable
         // since only a shallow compare is done to see if the state
         // has changed. Instead of modifying the "checked" object,
         // we create a new object with the updated state of what is
