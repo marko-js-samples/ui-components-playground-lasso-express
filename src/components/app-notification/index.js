@@ -2,17 +2,18 @@ var template = require('marko').load(require.resolve('./template.marko'));
 
 var NOTIFICATION_HEIGHT = 48;
 
-// Export a render(input) method that can be used
-// to render this UI component on the client
-function renderer(input, out) {
-    template.render(input, out);
-}
 
-function Widget() {
-    this.top = 0-NOTIFICATION_HEIGHT;
-}
+module.exports = require('marko-widgets').defineWidget({
+    template: require.resolve('./template.marko'),
 
-Widget.prototype = {
+    getTemplateData: function(input) {
+        return input;
+    },
+
+    init: function() {
+        this.top = 0-NOTIFICATION_HEIGHT;
+    },
+
     moveDown: function() {
         var self = this;
         this.top += NOTIFICATION_HEIGHT;
@@ -32,8 +33,4 @@ Widget.prototype = {
             self.destroy();
         }, 300);
     }
-};
-
-exports.Widget = Widget;
-
-require('marko-widgets').makeRenderable(exports, renderer);
+});

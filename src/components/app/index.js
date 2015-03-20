@@ -60,7 +60,7 @@ module.exports = defineWidget({
     //
     //     this.getEl('checkedDiv').innerHTML = checkedItems.join(', ');
     // },
-
+    //
     // update_buttonSize: function(newValue) {
     //     var button = this.getWidget('resizableButton');
     //     button.setSize(newValue);

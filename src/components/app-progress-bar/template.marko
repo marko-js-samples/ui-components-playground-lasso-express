@@ -1,15 +1,12 @@
 <div class="app-progress-bar" w-bind>
-    <div class="${step.getClassNames()}"
-        data-progress-step-index="${step.index}"
+    <div class="progress-step{?loop.getIndex() === data.activeIndex; active}"
+        data-progress-step-index="${loop.getIndex()}"
         w-id="step${step.index}"
         w-onclick="handleStepClick"
-        for="step in data.steps">
+        for="step in data.steps; status-var=loop">
 
         <a href="#" class="progress-step">
-            <invoke function="step.renderBody(out)" if="step.renderBody"/>
-            <if test="step.label">
-                $step.label
-            </if>
+            $step.label
             <div class="completion-icon"></div>
         </a>
         <div class="progress-step-end">

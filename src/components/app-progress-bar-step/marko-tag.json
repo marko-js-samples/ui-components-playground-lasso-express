@@ -6,5 +6,6 @@
     },
     "import-var": {
         "progressBar": "__progressBar"
-    }
+    },
+    "body-property": "label" // Make the body content a 'label' property
 }

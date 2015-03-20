@@ -5,7 +5,8 @@ module.exports = require('marko-widgets').defineWidget({
             size: input.size || 'normal',
             variant: input.variant || 'primary',
             className: input['class'],
-            attrs: input['*']
+            attrs: input['*'],
+            label: input.label
         };
     },
 
