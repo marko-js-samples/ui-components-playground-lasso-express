@@ -24,7 +24,7 @@ module.exports = require('marko-widgets').defineWidget({
             checked: checked
         };
     },
-    getWidgetBody: function(state, input) {
+    getInitialBody: function(input) {
         return input.label || input.renderBody;
     },
     extendWidget: function(widget) {

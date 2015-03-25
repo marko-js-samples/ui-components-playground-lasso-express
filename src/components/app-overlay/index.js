@@ -9,7 +9,7 @@ module.exports = require('marko-widgets').defineWidget({
         };
     },
 
-    getWidgetBody: function(state, input) {
+    getInitialBody: function(input) {
         return input.renderBody;
     },
 
