@@ -1,5 +1,6 @@
 {
     "attributes": {
-        "width": "integer"
+        "width": "integer",
+        "visible": "boolean"
     }
 }

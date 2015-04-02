@@ -1,0 +1,26 @@
+<div class="app-tabs" w-bind>
+    <ul class="tab-nav">
+        <li class="tab{?loop.getIndex() === data.activeIndex; active}"
+            for="tab in data.tabs; status-var=loop"
+            w-id="nav-${loop.getIndex()}"
+            w-preserve-body>
+            <a href="#${tab.id}"
+                data-tab-index="${loop.getIndex()}"
+                w-onClick="handleTabClick">
+                ${tab.label}
+            </a>
+        </li>
+    </ul>
+    <div style="clear: both"/>
+    <div class="tab-panes">
+        <div
+            class="tab-pane{?loop.getIndex() === data.activeIndex; active}"
+            for="tab in data.tabs; status-var=loop"
+            w-id="pane-${loop.getIndex()}"
+            w-preserve-body>
+
+            <invoke function="tab.renderBody(out)"/>
+
+        </div>
+    </div>
+</div>

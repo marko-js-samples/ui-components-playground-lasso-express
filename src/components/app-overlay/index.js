@@ -1,47 +1,75 @@
 module.exports = require('marko-widgets').defineWidget({
     template: require.resolve('./template.marko'),
 
-    getTemplateData: function(state, input) {
-        var width = input.width || 800;
-
+    getInitialState: function(input) {
         return {
-            width: width
+            width: input.width || '80%',
+            visible: input.visible === true ? true : false
         };
+    },
+
+    /**
+     * State handler for the "visible" state to avoid
+     * a re-render if the visibility of the overlay
+     * is changed. This ensures that CSS transitions
+     * will continue to work since the same DOM nodes
+     * will be used.
+     */
+    update_visible: function(newVisible) {
+        if (newVisible) {
+            this.$().addClass('visible');
+        } else {
+            this.$().removeClass('visible');
+        }
+
+        this.fixPageScrolling();
     },
 
     getInitialBody: function(input) {
         return input.renderBody;
     },
 
+    getTemplateData: function(state, input) {
+        return {
+            width: state.width,
+            visible: state.visible
+        };
+    },
+
     init: function() {
-        this.$el = this.$();
-        this._isVisible = false;
+        this.fixPageScrolling();
+    },
+
+    fixPageScrolling: function() {
+        if (this.state.visible === true) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     },
 
     hide: function() {
-        if (!this._isVisible) {
-            return;
-        }
-
-        this._isVisible = false;
-
-        document.body.style.overflow = '';
-        this.$el.removeClass('enabled');
-        this.emit('hide');
+        this.setVisibility(false);
     },
     show: function() {
-        if (this._isVisible) {
+        this.setVisibility(true);
+    },
+
+    setVisibility: function(visible) {
+        if (this.state.visible === visible) {
+            // Visibility did not change... nothing to do
             return;
         }
 
-        this.emit('beforeShow');
+        if (visible) {
+            this.emit('show');
+        } else {
+            this.emit('hide');
+        }
 
-        this._isVisible = true;
-
-        document.body.style.overflow = 'hidden';
-        this.$el.addClass('enabled');
-        this.emit('show');
+        this.setState('visible', visible);
     },
+
     handleMaskClick: function() {
         this.hide();
     },
@@ -61,8 +89,5 @@ module.exports = require('marko-widgets').defineWidget({
         if (!preventDefault) {
             this.hide();
         }
-    },
-    getBodyEl: function getBodyEl() {
-        return this.getEl('body');
     }
 });

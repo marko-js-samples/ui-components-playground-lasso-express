@@ -1,0 +1,8 @@
+{
+    "attributes": {
+        "title": "string"
+    },
+    "import-var": {
+        "sectionsHelper": "__sectionsHelper"
+    }
+}

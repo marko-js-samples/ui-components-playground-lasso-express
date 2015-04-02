@@ -11,147 +11,153 @@
         checked="true"
         w-id="myCheckbox"/> -->
 
+    <app-sections>
+        <app-section title="Buttons">
+            <table>
+                <tr>
+                    <td><b>Primary: </b></td>
+                    <td>
+                        <app-button label="small" size="small" variant="primary"/>
+                        <app-button label="normal" size="normal" variant="primary"/>
+                        <app-button label="large" size="large" variant="primary"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Secondary:&nbsp;</b></td>
+                    <td>
+                        <app-button label="small" size="small" variant="secondary"/>
+                        <app-button label="normal" size="normal" variant="secondary"/>
+                        <app-button label="large" size="large" variant="secondary"/>
+                    </td>
+                </tr>
+            </table>
 
-    <fieldset>
-        <legend>Checkboxes</legend>
-        <div w-id="checkboxes">
-            <app-checkbox
-                label="Bar" data="{name: 'bar'}"
-                checked="data.checked.bar"
-                w-onToggle="handleCheckboxToggle"/>
-        </div>
-    </fieldset>
-
-    <fieldset>
-        <legend>Checkboxes</legend>
-        <div w-id="checkboxes">
-            <app-checkbox
-                label="Foo"
-                data="{name: 'foo'}"
-                checked="data.checked.foo"
-                w-onToggle="handleCheckboxToggle"/>
-            <app-checkbox
-                label="Bar" data="{name: 'bar'}"
-                checked="data.checked.bar"
-                w-onToggle="handleCheckboxToggle"/>
-            <app-checkbox
-                label="Baz"
-                data="{name: 'baz'}"
-                checked="data.checked.baz"
-                w-onToggle="handleCheckboxToggle"/>
-        </div>
-        <div>
-            <b>Checked</b>:
-            <div w-id="checkedDiv">
-                <ul>
-                    <li for="checkedItem in data.checkedList">
-                        $checkedItem
-                    </li>
-                </ul>
+            <div>
+                <app-button label="Change Button Size - ${data.buttonSize}"
+                    size="${data.buttonSize}"
+                    variant="primary"
+                    w-onClick="handleChangeButtonSizeClick"
+                    w-id="resizableButton"/>
             </div>
-        </div>
+        </app-section>
 
-    </fieldset>
-    <fieldset>
-        <legend>Buttons</legend>
 
-        <table>
-            <tr>
-                <td><b>Primary: </b></td>
-                <td>
-                    <app-button label="small" size="small" variant="primary"/>
-                    <app-button label="normal" size="normal" variant="primary"/>
-                    <app-button label="large" size="large" variant="primary"/>
-                </td>
-            </tr>
-            <tr>
-                <td><b>Secondary:&nbsp;</b></td>
-                <td>
-                    <app-button label="small" size="small" variant="secondary"/>
-                    <app-button label="normal" size="normal" variant="secondary"/>
-                    <app-button label="large" size="large" variant="secondary"/>
-                </td>
-            </tr>
-        </table>
+        <app-section title="Checkboxes">
+            <p>
+                <app-checkbox
+                    label="Foo"
+                    data="{name: 'foo'}"
+                    checked="data.checked.foo"
+                    w-onToggle="handleCheckboxToggle"/>
+                <app-checkbox
+                    label="Bar" data="{name: 'bar'}"
+                    checked="data.checked.bar"
+                    w-onToggle="handleCheckboxToggle"/>
+                <app-checkbox
+                    label="Baz"
+                    data="{name: 'baz'}"
+                    checked="data.checked.baz"
+                    w-onToggle="handleCheckboxToggle"/>
+            </p>
+            <p>
+                <app-checkbox
+                    label="Bar" data="{name: 'bar'}"
+                    checked="data.checked.bar"
+                    w-onToggle="handleCheckboxToggle"/>
+            </p>
+            <p>
+                <b>Checked</b>:
+                <div w-id="checkedDiv">
+                    <ul>
+                        <li for="checkedItem in data.checkedList">
+                            $checkedItem
+                        </li>
+                    </ul>
+                </div>
+            </p>
+            <p>
+                <app-checkbox label="Foo" checked data="{name: 'foo'}" w-id="toggleCheckbox"/>
 
-        <div>
-            <app-button label="Change Button Size - ${data.buttonSize}"
-                size="${data.buttonSize}"
+                <app-button label="Toggle Checkbox" size="small" variant="primary"
+                    w-onClick="handleToggleCheckboxButtonClick"/>
+            </p>
+        </app-section>
+
+        <app-section title="Overlays">
+            <app-button label="Show Overlay"
                 variant="primary"
-                w-onClick="handleChangeButtonSizeClick"
-                w-id="resizableButton"/>
-        </div>
-        <div>
-            <app-checkbox label="Foo" checked data="{name: 'foo'}" w-id="toggleCheckbox"/>
+                w-onClick="handleShowOverlayButtonClick"/>
 
-            <app-button label="Toggle Checkbox" size="small" variant="primary"
-                w-onClick="handleToggleCheckboxButtonClick"/>
-        </div>
+            <app-button label="Show Notification"
+                variant="primary"
+                w-onClick="handleShowNotificationButtonClick"/>
 
+            <app-notifications w-id="notifications" w-preserve/>
 
-    </fieldset>
+            <app-overlay
+                w-onOk="handleOverlayOk"
+                w-onCancel="handleOverlayCancel"
+                w-onHide="handleOverlayHide"
+                w-onShow="handleOverlayShow"
+                w-id="overlay"
+                visible="data.overlayVisible">
+                <h2>Overlay Demo</h2>
+                This is an overlay!
+            </app-overlay>
+        </app-section>
 
-    <fieldset>
-        <legend>Overlays</legend>
+        <app-section title="Tabs">
 
-        <app-button label="Show Overlay"
-            variant="primary"
-            w-onClick="handleShowOverlayButtonClick"/>
+            <app-tabs>
+                <app-tab label="Home">
+                    Content for Home
+                </app-tab>
+                <app-tab label="Profile">
+                    Content for Profile
+                </app-tab>
+                <app-tab label="Messages">
+                    Content for Messages
+                </app-tab>
+            </app-tabs>
 
-        <app-button label="Show Notification"
-            variant="primary"
-            w-onClick="handleShowNotificationButtonClick"/>
+        </app-section>
 
-        <app-notifications w-id="notifications" w-preserve/>
+        <app-section title="Miscellaneous">
+            <app-progress-bar>
+                <app-progress-bar-step name="contact-info">
+                    Contact Info
+                </app-progress-bar-step>
+                <app-progress-bar-step name="interests">
+                    Interests
+                </app-progress-bar-step>
+                <app-progress-bar-step name="family">
+                    Family
+                </app-progress-bar-step>
+            </app-progress-bar>
+        </app-section>
 
-        <app-overlay
-            w-onOk="handleOverlayOk"
-            w-onCancel="handleOverlayCancel"
-            w-id="overlay">
-            <h2>Overlay Demo</h2>
-            This is an overlay!
-        </app-overlay>
-    </fieldset>
+        <app-section title="Client-side Rendering">
 
-    <fieldset>
-        <legend>Miscellaneous</legend>
+            <app-button label="Render a button"
+                w-onClick="handleRenderButtonClick"/>
 
-        <app-progress-bar>
-            <app-progress-bar-step name="contact-info">
-                Contact Info
-            </app-progress-bar-step>
-            <app-progress-bar-step name="interests">
-                Interests
-            </app-progress-bar-step>
-            <app-progress-bar-step name="family">
-                Family
-            </app-progress-bar-step>
-        </app-progress-bar>
-    </fieldset>
+            <app-button label="Render a checkbox"
+                w-onClick="handleRenderCheckboxButtonClick"/>
 
-    <fieldset>
-        <legend>Client-side Rendering</legend>
+            <app-button label="Render a progress bar"
+                w-onClick="handleRenderProgressBarButtonClick"/>
 
-        ${new Date()}
+            <div w-id="renderTarget" class="render-target" w-preserve-body/>
+        </app-section>
 
-        <app-button label="Render a button"
-            w-onClick="handleRenderButtonClick"/>
+        <app-section title="Maps">
 
-        <app-button label="Render a checkbox"
-            w-onClick="handleRenderCheckboxButtonClick"/>
-
-        <app-button label="Render a progress bar"
-            w-onClick="handleRenderProgressBarButtonClick"/>
-
-        <div w-id="renderTarget" class="render-target" w-preserve-body/>
-    </fieldset>
-
-    <fieldset w-preserve>
-        <legend>Maps</legend>
-
-        <app-map width="400px"
-            height="400px"
-            lat="37.774929"
-            lng="-122.419416"/>
-    </fieldset>
+            <app-map
+                w-preserve
+                width="400px"
+                height="400px"
+                lat="37.774929"
+                lng="-122.419416"/>
+        </app-section>
+    </app-sections>
 </div>

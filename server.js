@@ -24,11 +24,29 @@ require('optimizer').configure({
     bundlingEnabled: isProduction, // Only enable bundling in production
     minify: isProduction, // Only minify JS and CSS code in production
     fingerprintsEnabled: isProduction, // Only add fingerprints to URLs in production
-    bundles: [ // Create a separate JavaScript bundle for jQuery
+    bundles: [ // Create separate JS bundles. Only needed to guage the size of each library.
         {
             name: 'jquery',
             dependencies: [
-                'require: jquery' // Put only the jquery module in this bundle
+                'require: jquery' // Put all the jQuery code into this bundle
+            ]
+        },
+        {
+            name: 'marko',
+            dependencies: [
+                'require: marko'
+            ]
+        },
+        {
+            name: 'marko-widgets',
+            dependencies: [
+                'require: marko-widgets'
+            ]
+        },
+        {
+            name: 'events',
+            dependencies: [
+                'require: events'
             ]
         }
     ]

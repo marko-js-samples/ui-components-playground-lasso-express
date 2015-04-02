@@ -14,6 +14,7 @@ module.exports = defineWidget({
     getInitialState: function(input) {
         return {
             buttonSize: input.buttonSize || 'small',
+            overlayVisible: false,
             checked: input.checked || {
                 foo: false,
                 bar: true,
@@ -23,8 +24,6 @@ module.exports = defineWidget({
     },
 
     getTemplateData: function(state, input) {
-
-        var buttonSize = state.buttonSize;
         var checked = state.checked;
 
         var checkedList = Object.keys(checked).filter(function(k) {
@@ -34,7 +33,8 @@ module.exports = defineWidget({
         return {
             checkedList: checkedList,
             checked: state.checked,
-            buttonSize: buttonSize
+            buttonSize: state.buttonSize,
+            overlayVisible: state.overlayVisible
         };
     },
 
@@ -66,9 +66,23 @@ module.exports = defineWidget({
     //     button.setSize(newValue);
     //     button.setLabel('Change Button Size - ' + newValue);
     // },
+    //
+    update_overlayVisible: function(overlayVisible) {
+        this.getWidget('overlay').setVisibility(overlayVisible);
+    },
 
     handleShowOverlayButtonClick: function() {
+        // this.setState('overlayVisible', true);
         this.getWidget('overlay').show();
+    },
+
+    handleOverlayHide: function() {
+        // Synchronize the updated state of the o
+        this.setState('overlayVisible', false);
+    },
+
+    handleOverlayShow: function() {
+        this.setState('overlayVisible', true);
     },
 
     handleShowNotificationButtonClick: function() {

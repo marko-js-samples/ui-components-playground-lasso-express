@@ -7,6 +7,8 @@
         "../app-notifications/optimizer.json",
         "../app-map/optimizer.json",
         "../app-progress-bar/optimizer.json",
+        "../app-sections/optimizer.json",
+        "../app-tabs/optimizer.json",
         "style.less"
     ]
 }

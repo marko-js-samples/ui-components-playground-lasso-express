@@ -12,7 +12,7 @@
     transition-timing-function: ease-out;
 }
 
-.app-overlay.enabled > .app-overlay-mask {
+.app-overlay.visible > .app-overlay-mask {
     visibility: visible;
     opacity: 0.8;
     z-index: 999;
@@ -33,7 +33,7 @@
     z-index: 1000;
 }
 
-.app-overlay.enabled > .app-overlay-container {
+.app-overlay.visible > .app-overlay-container {
     top: 50%;
     opacity: 1;
 }
