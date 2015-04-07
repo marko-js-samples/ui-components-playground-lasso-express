@@ -13,8 +13,7 @@
     </ul>
     <div style="clear: both"/>
     <div class="tab-panes">
-        <div
-            class="tab-pane{?loop.getIndex() === data.activeIndex; active}"
+        <div class="tab-pane{?loop.getIndex() === data.activeIndex; active}"
             for="tab in data.tabs; status-var=loop"
             w-id="pane-${loop.getIndex()}"
             w-preserve-body>
