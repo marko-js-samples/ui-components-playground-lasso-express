@@ -1,6 +1,7 @@
 module.exports = require('marko-widgets').defineWidget({
     template: require.resolve('./template.marko'),
 
+
     getInitialProps: function(input) {
         var tabs = [];
         var activeIndex = -1;
@@ -11,10 +12,7 @@ module.exports = require('marko-widgets').defineWidget({
                 activeIndex = tabs.length;
             }
 
-            tabs.push({
-                label: tab.label,
-                renderBody: tab.renderBody
-            });
+            tabs.push(tab);
         }
 
         if (input.tabs) {
@@ -30,8 +28,6 @@ module.exports = require('marko-widgets').defineWidget({
             activeIndex = 0;
         }
 
-        input.tabs = tabs;
-
         return {
             activeIndex: activeIndex,
             tabs: tabs
@@ -43,27 +39,36 @@ module.exports = require('marko-widgets').defineWidget({
             activeIndex: input.activeIndex,
             tabs: input.tabs.map(function(tab) {
                 return {
-                    label: tab.label
+                    visible: tab.visible !== false,
+                    id: tab.id
                 };
             })
         };
     },
 
     getTemplateData: function(state, input) {
-        var tabs = state.tabs;
+        var activeIndex = state.activeIndex;
 
-        // NOTE: Input will be null if this is a re-render
-        //       and we will only have access to the persisted
-        //       state. If this is the first render then
-        //       we have the content for the tab panes.
-        //
-        if (input && input.tabs) {
-            tabs = input.tabs;
-        }
+        // If this is a rerender then we only have access
+        // to the state which includes the "lightweight" tabs
+        // (without the nested body content). However, if this
+        // is not a rerender then we have access to the input
+        // props which include the complete tabs.
+        var tabs = input ? input.tabs : state.tabs;
 
         return {
-            tabs: tabs,
-            activeIndex: state.activeIndex
+            tabs: tabs.map(function(tab, i) {
+                // Build a view model for our tab that will
+                // simplify how the tab is rendered
+                return {
+                    isActive: activeIndex === i,
+                    id: tab.id,
+                    visible: tab.visible,
+                    label: tab.label,
+                    body: tab.renderBody,
+                    index: i
+                };
+            })
         };
     },
 
