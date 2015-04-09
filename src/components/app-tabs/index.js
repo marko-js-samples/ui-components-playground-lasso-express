@@ -1,7 +1,7 @@
 module.exports = require('marko-widgets').defineWidget({
     template: require.resolve('./template.marko'),
 
-    getInitialProps: function(input, out) {
+    getInitialProps: function(input) {
         var tabs = [];
         var activeIndex = -1;
 
@@ -20,8 +20,8 @@ module.exports = require('marko-widgets').defineWidget({
         if (input.tabs) {
             input.tabs.forEach(addTab);
         } else if (input.getTabs) {
-            // Invoke the body function to discover nested <app-progress-bar-tab> tags
-            input.getTabs({ // Invoke the body with the scoped "__progressBar" variable
+            // Invoke the body function to discover nested <app-tab> tags
+            input.getTabs({ // Invoke the body with the scoped "__tabsHelper" variable
                 addTab: addTab
             });
         }
