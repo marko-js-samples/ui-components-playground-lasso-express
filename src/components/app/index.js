@@ -12,6 +12,8 @@ module.exports = defineWidget({
     template: require.resolve('./template.marko'),
 
     getInitialState: function(input) {
+        var now = (new Date()).toString();
+
         return {
             buttonSize: input.buttonSize || 'small',
             overlayVisible: false,
@@ -19,7 +21,15 @@ module.exports = defineWidget({
                 foo: false,
                 bar: true,
                 baz: false
-            }
+            },
+            dynamicTabs: [
+                {
+                    timestamp: now
+                },
+                {
+                    timestamp: now
+                }
+            ]
         };
     },
 
@@ -34,7 +44,13 @@ module.exports = defineWidget({
             checkedList: checkedList,
             checked: state.checked,
             buttonSize: state.buttonSize,
-            overlayVisible: state.overlayVisible
+            overlayVisible: state.overlayVisible,
+            dynamicTabs: state.dynamicTabs.map(function(tab, i) {
+                return {
+                    label: 'Tab ' + i,
+                    body: 'Content for tab ' + i + ' (timestamp: ' + tab.timestamp + ')'
+                };
+            })
         };
     },
 
@@ -147,5 +163,13 @@ module.exports = defineWidget({
     handleToggleCheckboxButtonClick: function(event) {
         var checkbox = this.getWidget('toggleCheckbox');
         checkbox.toggle();
+    },
+
+    handleAddTabButtonClick: function() {
+        this.state.dynamicTabs.push({
+            timestamp: '' + new Date()
+        });
+
+        this.setStateDirty('dynamicTabs');
     }
 });

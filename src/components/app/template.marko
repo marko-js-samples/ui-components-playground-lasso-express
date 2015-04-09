@@ -108,6 +108,8 @@
 
         <app-section title="Tabs">
 
+            <h3>Static tabs</h3>
+
             <app-tabs>
                 <app-tab label="Home">
                     Content for Home
@@ -119,6 +121,17 @@
                     Content for Messages
                 </app-tab>
             </app-tabs>
+
+            <h3>Dynamic tabs</h3>
+
+            <app-tabs>
+                <app-tab label="${tab.label}"
+                    for="tab in data.dynamicTabs">
+                    ${tab.body}
+                </app-tab>
+            </app-tabs>
+
+            <app-button label="Add Tab" w-onclick="handleAddTabButtonClick"/>
 
         </app-section>
 
