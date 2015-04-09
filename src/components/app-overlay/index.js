@@ -25,10 +25,6 @@ module.exports = require('marko-widgets').defineWidget({
         this.fixPageScrolling();
     },
 
-    getInitialBody: function(input) {
-        return input.renderBody;
-    },
-
     getTemplateData: function(state, input) {
         return {
             width: state.width,
