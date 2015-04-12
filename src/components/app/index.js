@@ -3,12 +3,12 @@ var button = require('src/components/app-button');
 var checkbox = require('src/components/app-checkbox');
 var progressBar = require('src/components/app-progress-bar');
 var extend = require('raptor-util/extend');
-var defineWidget = require('marko-widgets').defineWidget;
+var defineComponent = require('marko-widgets').defineComponent;
 
 var buttonSizes = ['small', 'normal', 'large'];
 var currentButtonSize = 0;
 
-module.exports = defineWidget({
+module.exports = defineComponent({
     template: require.resolve('./template.marko'),
 
     getInitialState: function(input) {
