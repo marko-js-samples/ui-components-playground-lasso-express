@@ -19,11 +19,6 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (input.steps) {
             input.steps.forEach(addStep);
-        } else if (input.getSteps) {
-            // Invoke the body function to discover nested <app-progress-bar-step> tags
-            input.getSteps({ // Invoke the body with the scoped "__progressBar" variable
-                addStep: addStep
-            });
         }
 
         if (activeIndex === -1) {

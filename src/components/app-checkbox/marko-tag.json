@@ -1,8 +1,6 @@
 {
-    "attributes": {
-        "label": "string",
-        "data": "expression",
-        "checked": "boolean",
-        "class": "string"
-    }
+    "@label": "string",
+    "@data": "expression",
+    "@checked": "boolean",
+    "@class": "string"
 }

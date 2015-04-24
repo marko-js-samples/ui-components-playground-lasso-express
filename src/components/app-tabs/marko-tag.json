@@ -1,3 +1,5 @@
 {
-    "body-function": "getTabs(__tabsHelper)"
+    "@tabs <tab>[]": {
+        "@label": "string"
+    }
 }

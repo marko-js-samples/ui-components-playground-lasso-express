@@ -12,7 +12,7 @@
         w-id="myCheckbox"/> -->
 
     <app-sections>
-        <app-section title="Buttons">
+        <app-sections.section title="Buttons">
             <table>
                 <tr>
                     <td><b>Primary: </b></td>
@@ -39,10 +39,10 @@
                     w-onClick="handleChangeButtonSizeClick"
                     w-id="resizableButton"/>
             </div>
-        </app-section>
+        </app-sections.section>
 
 
-        <app-section title="Checkboxes">
+        <app-sections.section title="Checkboxes">
             <p>
                 <app-checkbox
                     label="Foo"
@@ -81,9 +81,9 @@
                 <app-button label="Toggle Checkbox" size="small" variant="primary"
                     w-onClick="handleToggleCheckboxButtonClick"/>
             </p>
-        </app-section>
+        </app-sections.section>
 
-        <app-section title="Overlays">
+        <app-sections.section title="Overlays">
             <app-button label="Show Overlay"
                 variant="primary"
                 w-onClick="handleShowOverlayButtonClick"/>
@@ -104,52 +104,52 @@
                 <h2>Overlay Demo</h2>
                 This is an overlay!
             </app-overlay>
-        </app-section>
+        </app-sections.section>
 
-        <app-section title="Tabs">
+        <app-sections.section title="Tabs">
 
             <h3>Static tabs</h3>
 
             <app-tabs>
-                <app-tab label="Home">
+                <app-tabs.tab label="Home">
                     Content for Home
-                </app-tab>
-                <app-tab label="Profile">
+                </app-tabs.tab>
+                <app-tabs.tab label="Profile">
                     Content for Profile
-                </app-tab>
-                <app-tab label="Messages">
+                </app-tabs.tab>
+                <app-tabs.tab label="Messages">
                     Content for Messages
-                </app-tab>
+                </app-tabs.tab>
             </app-tabs>
 
             <h3>Dynamic tabs</h3>
 
             <app-tabs>
-                <app-tab label="${tab.label}"
+                <app-tabs.tab label="${tab.label}"
                     for="tab in data.dynamicTabs">
                     ${tab.body}
-                </app-tab>
+                </app-tabs.tab>
             </app-tabs>
 
             <app-button label="Add Tab" w-onclick="handleAddTabButtonClick"/>
 
-        </app-section>
+        </app-sections.section>
 
-        <app-section title="Miscellaneous">
+        <app-sections.section title="Miscellaneous">
             <app-progress-bar>
-                <app-progress-bar-step name="contact-info">
+                <app-progress-bar.step name="contact-info">
                     Contact Info
-                </app-progress-bar-step>
-                <app-progress-bar-step name="interests">
+                </app-progress-bar.step>
+                <app-progress-bar.step name="interests">
                     Interests
-                </app-progress-bar-step>
-                <app-progress-bar-step name="family">
+                </app-progress-bar.step>
+                <app-progress-bar.step name="family">
                     Family
-                </app-progress-bar-step>
+                </app-progress-bar.step>
             </app-progress-bar>
-        </app-section>
+        </app-sections.section>
 
-        <app-section title="Client-side Rendering">
+        <app-sections.section title="Client-side Rendering">
 
             <app-button label="Render a button"
                 w-onClick="handleRenderButtonClick"/>
@@ -161,9 +161,9 @@
                 w-onClick="handleRenderProgressBarButtonClick"/>
 
             <div w-id="renderTarget" class="render-target" w-preserve-body/>
-        </app-section>
+        </app-sections.section>
 
-        <app-section title="Maps">
+        <app-sections.section title="Maps">
 
             <app-map
                 w-preserve
@@ -171,6 +171,6 @@
                 height="400px"
                 lat="37.774929"
                 lng="-122.419416"/>
-        </app-section>
+        </app-sections.section>
     </app-sections>
 </div>

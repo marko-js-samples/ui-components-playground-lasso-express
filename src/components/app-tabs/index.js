@@ -17,11 +17,6 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (input.tabs) {
             input.tabs.forEach(addTab);
-        } else if (input.getTabs) {
-            // Invoke the body function to discover nested <app-tab> tags
-            input.getTabs({ // Invoke the body with the scoped "__tabsHelper" variable
-                addTab: addTab
-            });
         }
 
         if (activeIndex === -1) {
