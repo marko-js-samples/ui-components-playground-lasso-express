@@ -8,17 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/raptorjs-samples/ui-components-playground.git"
+    "url": "https://github.com/marko-js-samples/ui-components-playground.git"
   },
   "author": "Patrick Steele-idem <pnidem@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/raptorjs-samples/ui-components-playground/issues"
+    "url": "https://github.com/marko-js-samples/ui-components-playground/issues"
   },
-  "homepage": "https://github.com/raptorjs-samples/ui-components-playground",
-  "engines": {
-    "node": "0.10.x"
-  },
+  "homepage": "https://github.com/marko-js-samples/ui-components-playground",
   "dependencies": {
     "app-module-path": "^1.0.1",
     "browser-refresh-taglib": "^1.0.2",
