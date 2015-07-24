@@ -1,7 +1,0 @@
-{
-    "dependencies": [
-        "src/components/app-button/optimizer.json",
-        "require: ./",
-        "style.less"
-    ]
-}

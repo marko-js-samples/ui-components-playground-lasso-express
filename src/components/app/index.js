@@ -1,3 +1,5 @@
+require('./style.less');
+
 var raptorPubsub = require('raptor-pubsub');
 var button = require('src/components/app-button');
 var checkbox = require('src/components/app-checkbox');
@@ -9,7 +11,7 @@ var buttonSizes = ['small', 'normal', 'large'];
 var currentButtonSize = 0;
 
 module.exports = defineComponent({
-    template: require.resolve('./template.marko'),
+    template: require('./template.marko'),
 
     getInitialState: function(input) {
         var now = (new Date()).toString();

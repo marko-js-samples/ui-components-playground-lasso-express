@@ -1,7 +1,9 @@
+require('./style.less');
+
 var NOTIFICATION_HEIGHT = 48;
 
 module.exports = require('marko-widgets').defineComponent({
-    template: require.resolve('./template.marko'),
+    template: require('./template.marko'),
 
     init: function() {
         this.top = 0-NOTIFICATION_HEIGHT;

@@ -1,6 +1,7 @@
-module.exports = require('marko-widgets').defineComponent({
-    template: require.resolve('./template.marko'),
+require('./style.less');
 
+module.exports = require('marko-widgets').defineComponent({
+    template: require('./template.marko'),
 
     getInitialProps: function(input) {
         var tabs = [];

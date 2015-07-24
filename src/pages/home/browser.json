@@ -1,0 +1,9 @@
+{
+    "dependencies": [
+        "require: jquery",
+        "require: marko-widgets",
+        "src/layouts/default/browser.json",
+        "src/global-style/browser.json",
+        "src/components/app/browser.json"
+    ]
+}

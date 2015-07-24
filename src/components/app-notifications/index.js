@@ -1,10 +1,12 @@
+require('./style.less');
+
 var raptorPubsub = require('raptor-pubsub');
 var markoWidgets = require('marko-widgets');
 var notification = require('src/components/app-notification');
 var dom = require('marko-widgets/dom');
 
 module.exports = require('marko-widgets').defineComponent({
-    template: require.resolve('./template.marko'),
+    template: require('./template.marko'),
 
     getTemplateData: function(input) {
         return {};

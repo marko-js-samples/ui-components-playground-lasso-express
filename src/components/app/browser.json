@@ -1,5 +1,5 @@
 {
     "dependencies": [
-        "./style.less"
+        "require: ./"
     ]
 }

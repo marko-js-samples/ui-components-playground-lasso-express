@@ -1,9 +1,0 @@
-{
-    "dependencies": [
-        "require: jquery",
-        "require: marko-widgets",
-        "src/layouts/default/optimizer.json",
-        "src/global-style/optimizer.json",
-        "src/components/app/optimizer.json"
-    ]
-}
