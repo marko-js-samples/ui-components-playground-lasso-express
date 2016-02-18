@@ -1,9 +1,9 @@
-<div class="app-overlay{?data.visible; visible}" w-bind>
+<div class=['app-overlay', data.visible && 'visible'] w-bind>
     <div class="app-overlay-mask"
         w-onclick="handleMaskClick"/>
 
     <div class="app-overlay-container"
-        style="width: ${data.width};">
+        style={width: data.width}>
         <div class="app-overlay-body" w-id="body" w-body/>
         <div class="app-overlay-footer">
             <app-button label="Cancel"

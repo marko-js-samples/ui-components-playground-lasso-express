@@ -1,16 +1,16 @@
 <div class="app-progress-bar" w-bind>
-    <div class="progress-step{?loop.getIndex() === data.activeIndex; active}"
-        data-progress-step-index="${loop.getIndex()}"
+    <div class=["progress-step", step.isActive && 'active']
+        data-progress-step-index=step.index
         w-id="step${step.index}"
         w-onclick="handleStepClick"
-        for="step in data.steps; status-var=loop">
+        for(step in data.steps)>
 
         <a href="#" class="progress-step">
-            $step.label
+            <span w-body=step.body/>
             <div class="completion-icon"></div>
         </a>
         <div class="progress-step-end">
-            <svg class="progress-step-end" viewBox="0 0 125 100" overflow="visible" enable-background="new 0 0 100 100" xml:space="preserve" preserveAspectRatio="none">
+            <svg class="progress-step-end" viewBox="0 0 125 100" overflow="visible" enable-background="new 0 0 100 100" preserveAspectRatio="none" marko-body="static-text">
                 <polygon points="0,0 25,0 125,50 25,100 0,100" fill="white"/>
                 <polygon class="progress-step-end" points="0,0 100,50 0,100"/>
             </svg>

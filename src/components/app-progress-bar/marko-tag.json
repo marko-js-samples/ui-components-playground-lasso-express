@@ -2,7 +2,6 @@
     "@steps <step>[]": {
         "@name": "string",
         "@label": "string",
-        "@active": "boolean",
-        "body-property": "label" // Make the body content a 'label' property
+        "@active": "boolean"
     }
 }

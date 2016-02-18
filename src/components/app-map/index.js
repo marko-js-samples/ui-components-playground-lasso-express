@@ -17,14 +17,10 @@ module.exports = require('marko-widgets').defineComponent({
         var height = state.height;
         var width = state.width;
 
-        var style = '';
-        if (height) {
-            style += 'height: ' + height + ';';
-        }
-
-        if (width) {
-            style += 'width: ' + width + ';';
-        }
+        var style = {
+            height: height,
+            width: width
+        };
 
         return {
             style: style,

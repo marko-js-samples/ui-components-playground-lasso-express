@@ -1,4 +1,4 @@
-RaptorJS: UI Components Playground
+Marko Widgets: UI Components Playground
 ==================================
 
 TBD

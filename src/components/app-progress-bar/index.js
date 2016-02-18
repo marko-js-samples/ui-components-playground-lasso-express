@@ -4,41 +4,57 @@ module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
 
     getInitialState: function(input) {
-
-        var steps = [];
+        var steps = input.steps || [];
         var activeIndex = -1;
 
-        function addStep(step) {
-            if (step.active) {
-                activeIndex = steps.length;
-            }
+        var state = {
+            steps: input.steps.map(function(step) {
+                if (step.active) {
+                    activeIndex = steps.length;
+                }
 
-            steps.push({
-                label: step.label,
-                name: step.name
-            });
-        }
-
-        if (input.steps) {
-            input.steps.forEach(addStep);
-        }
+                return {
+                    name: step.name
+                };
+            })
+        };
 
         if (activeIndex === -1) {
             activeIndex = 0;
         }
 
-        input.steps = steps;
+        state.activeIndex = activeIndex;
 
-        return {
-            activeIndex: activeIndex,
-            steps: steps
-        };
+        return state;
     },
 
     getTemplateData: function(state, input) {
+        var activeIndex = state.activeIndex;
+
+        // If this is a rerender then we only have access
+        // to the state which includes the steps without
+        // (without the nested body content). However, if this
+        // is not a rerender then we have access to the input
+        // props which include the complete tabs.
+        var steps = state.steps;
+
         return {
-            activeIndex: state.activeIndex,
-            steps: state.steps
+            steps: steps.map(function(tab, i) {
+                var body;
+
+                if (input) {
+                    var inputStep = input.steps[i];
+                    body = inputStep.renderBody || inputStep.label;
+                }
+
+                // Build a view model for our tab that will
+                // simplify how the tab is rendered
+                return {
+                    isActive: activeIndex === i,
+                    body: body,
+                    index: i
+                };
+            })
         };
     },
 

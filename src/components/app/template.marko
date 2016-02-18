@@ -1,18 +1,6 @@
-<div w-bind="./" c-space="preserve">
-    <!-- <app-button label="Change Button Size - ${data.buttonSize}"
-        size="${data.buttonSize}"
-        variant="primary"
-        w-onClick="handleChangeButtonSizeClick"
-        w-id="resizableButton"/>
-
-    <app-checkbox
-        label="Baz"
-        data="{name: 'baz'}"
-        checked="true"
-        w-id="myCheckbox"/> -->
-
+<div w-bind marko-preserve-whitespace>
     <app-sections>
-        <app-sections.section title="Buttons">
+        <app-sections:section title="Buttons">
             <table>
                 <tr>
                     <td><b>Primary: </b></td>
@@ -34,56 +22,56 @@
 
             <div>
                 <app-button label="Change Button Size - ${data.buttonSize}"
-                    size="${data.buttonSize}"
+                    size=data.buttonSize
                     variant="primary"
                     w-onClick="handleChangeButtonSizeClick"
                     w-id="resizableButton"/>
             </div>
-        </app-sections.section>
+        </app-sections:section>
 
 
-        <app-sections.section title="Checkboxes">
+        <app-sections:section title="Checkboxes">
             <p>
                 <app-checkbox
                     label="Foo"
-                    data="{name: 'foo'}"
-                    checked="data.checked.foo"
+                    data={name: 'foo'}
+                    checked=data.checked.foo
                     w-onToggle="handleCheckboxToggle"/>
                 <app-checkbox
-                    label="Bar" data="{name: 'bar'}"
-                    checked="data.checked.bar"
+                    label="Bar" data={name: 'bar'}
+                    checked=data.checked.bar
                     w-onToggle="handleCheckboxToggle"/>
                 <app-checkbox
                     label="Baz"
-                    data="{name: 'baz'}"
-                    checked="data.checked.baz"
+                    data={name: 'baz'}
+                    checked=data.checked.baz
                     w-onToggle="handleCheckboxToggle"/>
             </p>
             <p>
                 <app-checkbox
-                    label="Bar" data="{name: 'bar'}"
-                    checked="data.checked.bar"
+                    label="Bar" data={name: 'bar'}
+                    checked=data.checked.bar
                     w-onToggle="handleCheckboxToggle"/>
             </p>
             <p>
                 <b>Checked</b>:
                 <div w-id="checkedDiv">
                     <ul>
-                        <li for="checkedItem in data.checkedList">
-                            $checkedItem
+                        <li for(checkedItem in data.checkedList)>
+                            ${checkedItem}
                         </li>
                     </ul>
                 </div>
             </p>
             <p>
-                <app-checkbox label="Foo" checked data="{name: 'foo'}" w-id="toggleCheckbox"/>
+                <app-checkbox label="Foo" checked data={name: 'foo'} w-id="toggleCheckbox"/>
 
                 <app-button label="Toggle Checkbox" size="small" variant="primary"
                     w-onClick="handleToggleCheckboxButtonClick"/>
             </p>
-        </app-sections.section>
+        </app-sections:section>
 
-        <app-sections.section title="Overlays">
+        <app-sections:section title="Overlays">
             <app-button label="Show Overlay"
                 variant="primary"
                 w-onClick="handleShowOverlayButtonClick"/>
@@ -100,58 +88,57 @@
                 w-onHide="handleOverlayHide"
                 w-onShow="handleOverlayShow"
                 w-id="overlay"
-                visible="data.overlayVisible">
+                visible=data.overlayVisible>
                 <h2>Overlay Demo</h2>
                 This is an overlay!
             </app-overlay>
-        </app-sections.section>
+        </app-sections:section>
 
-        <app-sections.section title="Tabs">
+        <app-sections:section title="Tabs">
 
             <h3>Static tabs</h3>
 
             <app-tabs>
-                <app-tabs.tab label="Home">
+                <app-tabs:tab label="Home">
                     Content for Home
-                </app-tabs.tab>
-                <app-tabs.tab label="Profile">
+                </app-tabs:tab>
+                <app-tabs:tab label="Profile">
                     Content for Profile
-                </app-tabs.tab>
-                <app-tabs.tab label="Messages">
+                </app-tabs:tab>
+                <app-tabs:tab label="Messages">
                     Content for Messages
-                </app-tabs.tab>
+                </app-tabs:tab>
             </app-tabs>
 
             <h3>Dynamic tabs</h3>
 
             <app-tabs>
-                <app-tabs.tab label="${tab.label}"
-                    for="tab in data.dynamicTabs">
+                <app-tabs:tab label=tab.label for(tab in data.dynamicTabs)>
                     ${tab.body}
-                </app-tabs.tab>
+                </app-tabs:tab>
             </app-tabs>
 
             <app-button label="Add Tab" w-onclick="handleAddTabButtonClick"/>
 
-        </app-sections.section>
+        </app-sections:section>
 
-        <app-sections.section title="Miscellaneous">
+        <app-sections:section title="Miscellaneous">
             <app-progress-bar>
-                <app-progress-bar.step name="contact-info">
+                <app-progress-bar:step name="contact-info">
                     Contact Info
-                </app-progress-bar.step>
-                <app-progress-bar.step name="interests">
+                </app-progress-bar:step>
+                <app-progress-bar:step name="interests">
                     Interests
-                </app-progress-bar.step>
-                <app-progress-bar.step name="family">
+                </app-progress-bar:step>
+                <app-progress-bar:step name="family">
                     Family
-                </app-progress-bar.step>
+                </app-progress-bar:step>
             </app-progress-bar>
             <br/>
             <app-number-spinner/>
-        </app-sections.section>
+        </app-sections:section>
 
-        <app-sections.section title="Client-side Rendering">
+        <app-sections:section title="Client-side Rendering">
 
             <app-button label="Render a button"
                 w-onClick="handleRenderButtonClick"/>
@@ -163,9 +150,9 @@
                 w-onClick="handleRenderProgressBarButtonClick"/>
 
             <div w-id="renderTarget" class="render-target" w-preserve-body/>
-        </app-sections.section>
+        </app-sections:section>
 
-        <app-sections.section title="Maps">
+        <app-sections:section title="Maps">
 
             <app-map
                 w-preserve
@@ -173,6 +160,6 @@
                 height="400px"
                 lat="37.774929"
                 lng="-122.419416"/>
-        </app-sections.section>
+        </app-sections:section>
     </app-sections>
 </div>
