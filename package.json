@@ -26,7 +26,6 @@
     "lasso-less": "^2.0.1",
     "lasso-marko": "^2.0.0",
     "marko": "^4.0.0-beta.4",
-    "marko-widgets": "^6.2.2",
     "raptor-pubsub": "^1.0.5",
     "raptor-util": "^1.0.9",
     "serve-static": "^1.6.2"
