@@ -1,0 +1,6 @@
+var variantClassName=(state.variant !== 'primary' && 'app-button-' + state.variant)
+var sizeClassName=(state.size !== 'normal' && 'app-button-' + state.size)
+
+<button class=['app-button', variantClassName, sizeClassName, state.className] ${state.attrs} onClick("handleClick")>
+    <span include()/>
+</button>

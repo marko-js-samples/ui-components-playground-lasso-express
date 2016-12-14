@@ -1,5 +1,6 @@
 require('app-module-path').addPath(__dirname);
-require('marko/node-require').install();
+require('marko/express');
+require('marko/node-require');
 require('lasso/node-require-no-op').enable('.less', '.css');
 
 var express = require('express');
@@ -26,32 +27,6 @@ require('lasso').configure({
     bundlingEnabled: isProduction, // Only enable bundling in production
     minify: isProduction, // Only minify JS and CSS code in production
     fingerprintsEnabled: isProduction, // Only add fingerprints to URLs in production
-    bundles: [ // Create separate JS bundles. Only needed to guage the size of each library.
-        {
-            name: 'jquery',
-            dependencies: [
-                'require: jquery' // Put all the jQuery code into this bundle
-            ]
-        },
-        {
-            name: 'marko',
-            dependencies: [
-                'require: marko'
-            ]
-        },
-        {
-            name: 'marko-widgets',
-            dependencies: [
-                'require: marko-widgets'
-            ]
-        },
-        {
-            name: 'events',
-            dependencies: [
-                'require: events'
-            ]
-        }
-    ]
 });
 
 var app = express();
@@ -67,7 +42,10 @@ app.use('/static', serveStatic(__dirname + '/static'));
 // Map the "/" route to the home page
 app.get('/', require('./src/pages/home'));
 
-app.listen(port, function() {
+app.listen(port, function(err) {
+    if (err) {
+        throw err;
+    }
     console.log('Listening on port %d', port);
 
     // The browser-refresh module uses this event to know that the

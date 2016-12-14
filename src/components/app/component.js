@@ -5,19 +5,20 @@ var button = require('src/components/app-button');
 var checkbox = require('src/components/app-checkbox');
 var progressBar = require('src/components/app-progress-bar');
 var extend = require('raptor-util/extend');
-var defineComponent = require('marko-widgets').defineComponent;
 
 var buttonSizes = ['small', 'normal', 'large'];
+var buttonVariants = ['primary', 'secondary'];
+
 var currentButtonSize = 0;
+var currentButtonVariant = 0;
 
-module.exports = defineComponent({
-    template: require('./template.marko'),
-
-    getInitialState: function(input) {
+module.exports = {
+    onInput: function(input) {
         var now = (new Date()).toString();
 
-        return {
+        this.state = {
             buttonSize: input.buttonSize || 'small',
+            buttonVariant: input.buttonVariant || 'primary',
             overlayVisible: false,
             checked: input.checked || {
                 foo: false,
@@ -32,27 +33,6 @@ module.exports = defineComponent({
                     timestamp: now
                 }
             ]
-        };
-    },
-
-    getTemplateData: function(state, input) {
-        var checked = state.checked;
-
-        var checkedList = Object.keys(checked).filter(function(k) {
-            return checked[k] === true;
-        });
-
-        return {
-            checkedList: checkedList,
-            checked: state.checked,
-            buttonSize: state.buttonSize,
-            overlayVisible: state.overlayVisible,
-            dynamicTabs: state.dynamicTabs.map(function(tab, i) {
-                return {
-                    label: 'Tab ' + i,
-                    body: 'Content for tab ' + i + ' (timestamp: ' + tab.timestamp + ')'
-                };
-            })
         };
     },
 
@@ -71,20 +51,10 @@ module.exports = defineComponent({
         this.setState('checked', newChecked);
     },
 
-    // update_checked: function(newValue) {
-    //     var checkedItems = Object.keys(newValue).filter(function(name) {
-    //         return newValue[name] === true;
-    //     });
-    //
-    //     this.getEl('checkedDiv').innerHTML = checkedItems.join(', ');
-    // },
-    //
-    // update_buttonSize: function(newValue) {
-    //     var button = this.getWidget('resizableButton');
-    //     button.setSize(newValue);
-    //     button.setLabel('Change Button Size - ' + newValue);
-    // },
-    //
+    /**
+     * This demonstrates how to provide a custom state transition handler to avoid
+     * a full rerender.
+     */
     update_overlayVisible: function(overlayVisible) {
         this.getWidget('overlay').setVisibility(overlayVisible);
     },
@@ -122,14 +92,14 @@ module.exports = defineComponent({
     },
 
     handleRenderButtonClick: function() {
-        button.render({
+        button.renderSync({
                 label: 'Hello World'
             })
             .appendTo(this.getEl('renderTarget'));
     },
 
     handleRenderCheckboxButtonClick: function() {
-        checkbox.render({
+        checkbox.renderSync({
                 label: 'Hello World',
                 checked: true
             })
@@ -137,7 +107,7 @@ module.exports = defineComponent({
     },
 
     handleRenderProgressBarButtonClick: function() {
-        progressBar.render({
+        progressBar.renderSync({
                 steps: [
                     {
                         label: 'Step 1'
@@ -157,9 +127,14 @@ module.exports = defineComponent({
             .appendTo(this.getEl('renderTarget'));
     },
 
-    handleChangeButtonSizeClick: function(event, button) {
+    handleChangeButtonSizeClick: function() {
         var nextButtonSize = buttonSizes[++currentButtonSize % buttonSizes.length];
-        this.setState('buttonSize', nextButtonSize);
+        this.state.buttonSize = nextButtonSize;
+    },
+
+    handleChangeButtonVariantClick: function() {
+        var nextButtonVariant = buttonVariants[++currentButtonVariant % buttonVariants.length];
+        this.state.buttonVariant = nextButtonVariant;
     },
 
     handleToggleCheckboxButtonClick: function(event) {
@@ -168,10 +143,8 @@ module.exports = defineComponent({
     },
 
     handleAddTabButtonClick: function() {
-        this.state.dynamicTabs.push({
+        this.state.dynamicTabs = this.state.dynamicTabs.concat({
             timestamp: '' + new Date()
         });
-
-        this.setStateDirty('dynamicTabs');
     }
-});
+};

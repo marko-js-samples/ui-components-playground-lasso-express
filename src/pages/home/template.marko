@@ -1,10 +1,10 @@
 <lasso-page package-path="./browser.json" />
 
-<layout-use("src/layouts/default/template.marko")>
-    <layout-put into="title">
-        Marko Widgets UI Components Playground
-    </layout-put>
-    <layout-put into="body">
+<include("src/layouts/default")>
+    <@title>
+        Marko UI Components Playground
+    </@title>
+    <@body>
         <app/>
-    </layout-put>
-</layout-use>
+    </@body>
+</include>

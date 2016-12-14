@@ -1,0 +1,28 @@
+<script marko-init>
+function getStepBody(stepIndex, steps) {
+    if (!steps) {
+        return;
+    }
+    var step = steps[stepIndex];
+    return step && (step.renderBody || step.label);
+}
+</script>
+
+<div class="app-progress-bar">
+    <for(stepIndex, step in state.steps)>
+        <div class=["progress-step", stepIndex === state.activeIndex && 'active']
+            onClick("handleStepClick", stepIndex)>
+
+            <a href="#" class="progress-step">
+                <span include(getStepBody(stepIndex, data.steps))/>
+                <div class="completion-icon"></div>
+            </a>
+            <div class="progress-step-end">
+                <svg class="progress-step-end" viewBox="0 0 125 100" overflow="visible" enable-background="new 0 0 100 100" preserveAspectRatio="none">
+                    <polygon points="0,0 25,0 125,50 25,100 0,100" fill="white"/>
+                    <polygon class="progress-step-end" points="0,0 100,50 0,100"/>
+                </svg>
+            </div>
+        </div>
+    </for>
+</div>

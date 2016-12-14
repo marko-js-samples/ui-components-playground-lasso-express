@@ -1,11 +1,10 @@
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
-    getInitialState: function(input) {
+module.exports = {
+    onInput: function(input) {
         var height = input.height;
         var width = input.width;
         var className = input['class'];
 
-        return {
+        this.state = {
             width: width,
             height: height,
             lat: input.lat,
@@ -13,21 +12,7 @@ module.exports = require('marko-widgets').defineComponent({
             className: className
         };
     },
-    getTemplateData: function(state, input) {
-        var height = state.height;
-        var width = state.width;
-
-        var style = {
-            height: height,
-            width: width
-        };
-
-        return {
-            style: style,
-            className: input['class']
-        };
-    },
-    init: function() {
+    onMount: function() {
         var el = this.el;
         var google = window.google;
 
@@ -48,7 +33,7 @@ module.exports = require('marko-widgets').defineComponent({
                     lng)
                 });
         } else {
-            this.$().html('Failed to load Google Maps API. Is your internet connection working?');
+            this.innerHTML = 'Failed to load Google Maps API. Is your internet connection working?';
         }
     }
-});
+};

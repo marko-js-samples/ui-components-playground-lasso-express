@@ -2,13 +2,11 @@
 @notification-border-color: darken(@notification-bg, 20%);
 
 .app-notification {
-    position: absolute;
-    top: -48px;
-    opacity: 1;
-    transition-property: top, opacity;
+    opacity: 0;
+    transition-property: max-height, opacity;
     transition-duration: .3s;
     transition-timing-function: ease-out;
-    height: 40px;
+    max-height: 0px;
     margin-top: 8px;
     background-color: @notification-bg;
     color: white;

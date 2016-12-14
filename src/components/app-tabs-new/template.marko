@@ -1,0 +1,17 @@
+<div class="app-tabs">
+    <ul class="tab-nav">
+        <li for(i, tab in state.tabs)
+            class=['tab', tab.isActive && 'active']>
+
+            <a href="#" onClick("handleTabClick", i)>
+                ${tab.label}
+            </a>
+        </li>
+    </ul>
+    <div style="clear: both"/>
+    <div class="tab-panes">
+        <div for(i, tab in state.tabs)
+            class=['tab-pane', data.isActiveTab(i) && 'active']
+            content(data.getTabBody(i))/>
+    </div>
+</div>

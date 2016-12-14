@@ -1,40 +1,18 @@
 require('./style.less');
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
-
-    getInitialState: function(input) {
-        return {
+module.exports = {
+    onInput: function(input) {
+        this.state = {
             width: input.width || '80%',
             visible: input.visible === true ? true : false
         };
     },
 
-    /**
-     * State handler for the "visible" state to avoid
-     * a re-render if the visibility of the overlay
-     * is changed. This ensures that CSS transitions
-     * will continue to work since the same DOM nodes
-     * will be used.
-     */
-    update_visible: function(newVisible) {
-        if (newVisible) {
-            this.$().addClass('visible');
-        } else {
-            this.$().removeClass('visible');
-        }
-
+    onMount: function() {
         this.fixPageScrolling();
     },
 
-    getTemplateData: function(state, input) {
-        return {
-            width: state.width,
-            visible: state.visible
-        };
-    },
-
-    init: function() {
+    onUpdate: function() {
         this.fixPageScrolling();
     },
 
@@ -88,4 +66,4 @@ module.exports = require('marko-widgets').defineComponent({
             this.hide();
         }
     }
-});
+};

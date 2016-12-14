@@ -1,20 +1,20 @@
-<div class=['app-overlay', data.visible && 'visible'] w-bind>
+<div class=['app-overlay', state.visible && 'visible']>
     <div class="app-overlay-mask"
-        w-onclick="handleMaskClick"/>
+        onClick("handleMaskClick")/>
 
     <div class="app-overlay-container"
-        style={width: data.width}>
-        <div class="app-overlay-body" w-id="body" w-body/>
+        style={width: state.width}>
+        <div class="app-overlay-body" ref="body" include()/>
         <div class="app-overlay-footer">
             <app-button label="Cancel"
                 size="large"
                 variant="secondary"
-                w-onClick="handleCancelButtonClick"/>
+                onClick("handleCancelButtonClick")/>
             &nbsp;
             <app-button label="Done"
                 size="large"
                 variant="primary"
-                w-onClick="handleDoneButtonClick"/>
+                onClick("handleDoneButtonClick")/>
         </div>
     </div>
 </div>

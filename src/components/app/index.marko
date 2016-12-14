@@ -1,0 +1,169 @@
+<div>
+    <app-sections>
+        <@section title="Buttons">
+            <table>
+                <tr>
+                    <td><b>Primary: </b></td>
+                    <td>
+                        <app-button label="small" size="small" variant="primary"/>
+                        <app-button label="normal" size="normal" variant="primary"/>
+                        <app-button label="large" size="large" variant="primary"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Secondary:&nbsp;</b></td>
+                    <td>
+                        <app-button label="small" size="small" variant="secondary"/>
+                        <app-button label="normal" size="normal" variant="secondary"/>
+                        <app-button label="large" size="large" variant="secondary"/>
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                <app-button label="Change Button Size - ${state.buttonSize}"
+                    size=state.buttonSize
+                    variant="primary"
+                    onClick("handleChangeButtonSizeClick")/>
+                <app-button label="Change Button Variant - ${state.buttonVariant}"
+                    variant=state.buttonVariant
+                    onClick("handleChangeButtonVariantClick")/>
+            </div>
+        </@section>
+
+
+        <@section title="Checkboxes">
+            <p>
+                <app-checkbox
+                    label="Foo"
+                    data={name: 'foo'}
+                    checked=state.checked.foo
+                    onToggle("handleCheckboxToggle")/>
+                <app-checkbox
+                    label="Bar" data={name: 'bar'}
+                    checked=state.checked.bar
+                    onToggle("handleCheckboxToggle")/>
+                <app-checkbox
+                    label="Baz"
+                    data={name: 'baz'}
+                    checked=state.checked.baz
+                    onToggle("handleCheckboxToggle")/>
+            </p>
+            <p>
+                <app-checkbox
+                    label="Bar" data={name: 'bar'}
+                    checked=state.checked.bar
+                    onToggle("handleCheckboxToggle")/>
+            </p>
+            <p>
+                <b>Checked</b>:
+                <ul>
+                    <for(key,value in state.checked)>
+                        <li if(value)>
+                            ${key}
+                        </li>
+                    </for>
+                </ul>
+            </p>
+            <p>
+                <app-checkbox label="Foo" checked data={name: 'foo'} ref="toggleCheckbox"/>
+
+                <app-button label="Toggle Checkbox" size="small" variant="primary"
+                    onClick("handleToggleCheckboxButtonClick")/>
+            </p>
+        </@section>
+
+        <@section title="Overlays">
+            <app-button label="Show Overlay"
+                variant="primary"
+                onClick("handleShowOverlayButtonClick")/>
+
+            <app-button label="Show Notification"
+                variant="primary"
+                onClick("handleShowNotificationButtonClick")/>
+
+            <app-notifications ref="notifications" no-update/>
+
+            <app-overlay
+                onOk("handleOverlayOk")
+                onCancel("handleOverlayCancel")
+                onHide("handleOverlayHide")
+                onShow("handleOverlayShow")
+                ref="overlay"
+                visible=state.overlayVisible>
+                <h2>Overlay Demo</h2>
+                This is an overlay!
+            </app-overlay>
+        </@section>
+
+        <@section title="Tabs">
+
+            <h3>Static tabs</h3>
+
+            <app-tabs>
+                <@tab label="Home">
+                    Content for Home
+                </@tab>
+                <@tab label="Profile">
+                    Content for Profile
+                </@tab>
+                <@tab label="Messages">
+                    Content for Messages
+                </@tab>
+            </app-tabs>
+
+            <h3>Dynamic tabs</h3>
+
+            <app-tabs>
+                <for(tabIndex,tab in state.dynamicTabs)>
+                    <@tab label=('Tab ' + tabIndex)>
+                        Content for tab ${tabIndex}: ${tab.timestamp}
+                    </@tab>
+                </for>
+            </app-tabs>
+
+            <app-button label="Add Tab" onClick("handleAddTabButtonClick")/>
+
+        </@section>
+
+        <@section title="Miscellaneous">
+            <app-progress-bar>
+                <@step name="contact-info">
+                    Contact Info
+                </@step>
+                <@step name="interests">
+                    Interests
+                </@step>
+                <@step name="family">
+                    Family
+                </@step>
+            </app-progress-bar>
+            <br/>
+            <app-number-spinner/>
+        </@section>
+
+        <@section title="Client-side Rendering">
+
+            <app-button label="Render a button"
+                onClick("handleRenderButtonClick")/>
+
+            <app-button label="Render a checkbox"
+                onClick("handleRenderCheckboxButtonClick")/>
+
+            <app-button label="Render a progress bar"
+                onClick("handleRenderProgressBarButtonClick")/>
+
+            <div ref="renderTarget" class="render-target" no-update-body/>
+        </@section>
+
+        <@section title="Maps">
+
+            <app-map
+                no-update
+                width="400px"
+                height="400px"
+                lat="37.774929"
+                lng="-122.419416"/>
+        </@section>
+    </app-sections>
+</div>

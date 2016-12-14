@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        <layout-placeholder name="title"/>
+        <include(data.title)/>
     </title>
 
     <!--
@@ -14,11 +14,11 @@
 <body>
     <div class="container">
         <h1>
-            <layout-placeholder name="title"/>
+            <include(data.title)/>
         </h1>
 
         <main id="main">
-            <layout-placeholder name="body"/>
+            <include(data.body)/>
         </main>
     </div>
 
@@ -26,12 +26,6 @@
     <script> tags to include optimized JS URLs will be included below:
     -->
     <lasso-body/>
-
-    <!-- Code to initialize widgets will be inserted below -->
-    <init-widgets immediate/>
-
-    <!-- Out-of-order async fragments (if any) will be rendered below -->
-    <async-fragments/>
 
     <!--
     If the browser is started using the browser-refresh launcher

@@ -1,0 +1,29 @@
+<script marko-init>
+    function getTabBody(tabIndex, tabs) {
+        if (!tabs) {
+            return;
+        }
+
+        var tab = tabs[tabIndex];
+        return tab && tab.renderBody;
+    }
+</script>
+
+<div class="app-tabs">
+    <ul class="tab-nav">
+        <li for(tabIndex, tab in state.tabs)
+            class=['tab', (tabIndex === state.activeIndex) && 'active']>
+
+            <a href="#" onClick("handleTabClick", tabIndex)>
+                <include(tab.label)/>
+            </a>
+        </li>
+    </ul>
+    <div style="clear: both"/>
+    <div class="tab-panes">
+        <div for(tabIndex, tab in state.tabs)
+            class=['tab-pane', (tabIndex === state.activeIndex) && 'active']>
+            <include(getTabBody(tabIndex, data.tabs))/>
+        </div>
+    </div>
+</div>
