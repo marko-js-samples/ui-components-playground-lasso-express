@@ -1,14 +1,34 @@
-<script marko-init>
-    function getTabBody(tabIndex, tabs) {
-        if (!tabs) {
-            return;
+<script>
+    require('./style.less');
+
+    module.exports = {
+        onInput: function(input) {
+            var activeIndex = 0;
+
+            var tabs = input.tabs || [];
+
+            tabs.forEach(function(tab, i) {
+                if (tab.active) {
+                    activeIndex = i;
+                }
+            });
+
+            this.state = {
+                activeIndex: activeIndex,
+                tabs: tabs
+            };
+        },
+
+        setActiveIndex: function(newActiveIndex) {
+            this.state.activeIndex = newActiveIndex;
+        },
+
+        handleTabClick: function(tabIndex, event) {
+            this.setActiveIndex(tabIndex);
+            event.preventDefault();
         }
-
-        var tab = tabs[tabIndex];
-        return tab && tab.renderBody;
-    }
+    };
 </script>
-
 <div class="app-tabs">
     <ul class="tab-nav">
         <li for(tabIndex, tab in state.tabs)
@@ -23,7 +43,7 @@
     <div class="tab-panes">
         <div for(tabIndex, tab in state.tabs)
             class=['tab-pane', (tabIndex === state.activeIndex) && 'active']>
-            <include(getTabBody(tabIndex, data.tabs))/>
+            <include(tab.renderBody)/>
         </div>
     </div>
 </div>

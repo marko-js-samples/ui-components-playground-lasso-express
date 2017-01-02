@@ -4,7 +4,9 @@
 
     <div class="app-overlay-container"
         style={width: state.width}>
-        <div class="app-overlay-body" ref="body" include()/>
+        <div class="app-overlay-body" ref="body">
+            <include(state.body)/>
+        </div>
         <div class="app-overlay-footer">
             <app-button label="Cancel"
                 size="large"

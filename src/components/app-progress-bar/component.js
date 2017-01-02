@@ -3,27 +3,19 @@ require('./style.less');
 module.exports = {
     onInput: function(input) {
         var steps = input.steps || [];
-        var activeIndex = -1;
+        var activeIndex = 0;
 
-        var state = {
-            steps: input.steps.map(function(step) {
-                if (step.active) {
-                    activeIndex = steps.length;
-                }
 
-                return {
-                    name: step.name
-                };
-            })
+        steps.forEach(function(step) {
+            if (step.active) {
+                activeIndex = steps.length;
+            }
+        });
+
+        this.state = {
+            steps: steps,
+            activeIndex: activeIndex
         };
-
-        if (activeIndex === -1) {
-            activeIndex = 0;
-        }
-
-        state.activeIndex = activeIndex;
-
-        this.state = state;
     },
 
     setCurrentStepIndex: function(index) {
@@ -46,7 +38,7 @@ module.exports = {
 
         var newStep = this.state.steps[index];
 
-        this.setState('activeIndex', index);
+        this.state.activeIndex = index;
 
         this.emit('change', {
             name: newStep.name,

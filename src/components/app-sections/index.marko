@@ -1,6 +1,6 @@
 import './style.less'
 
-<script marko-init>
+<script template-helpers>
     function getAnchorName(section) {
         if (!section.anchorName) {
             section.anchorName = section.title.replace(/[^a-zA-Z]+/g, '-');

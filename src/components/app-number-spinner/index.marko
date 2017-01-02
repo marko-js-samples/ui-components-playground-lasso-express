@@ -1,4 +1,6 @@
-<script marko-init>
+import './style.css'
+
+<script>
 function getClassNameForValue(value) {
     if (value < 0) {
         return 'negative';
@@ -6,20 +8,40 @@ function getClassNameForValue(value) {
         return 'positive';
     }
 }
+
+module.exports = {
+    onInput: function(input) {
+        var value = input.value || 0;
+
+        this.state = {
+            value: value
+        };
+    },
+
+    handleIncrementClick: function(delta) {
+        this.state.value += delta;
+    },
+    handleInputKeyUp: function(event, el) {
+        var newValue = el.value;
+        if (/^-?[0-9]+$/.test(newValue)) {
+            this.state.value = parseInt(newValue, 10);
+        }
+    }
+};
 </script>
 
 var value=state.value
 
 <div class=['number-spinner', getClassNameForValue(value)]>
 
-    <button type="button" onClick("handleIncrementClick", 1)>
+    <button type="button" onClick("handleIncrementClick", -1)>
         -
     </button>
 
     <input type="text" value=state.value size="4"
         onKeyUp("handleInputKeyUp")>
 
-    <button type="button" onClick("handleIncrementClick", -1)>
+    <button type="button" onClick("handleIncrementClick", 1)>
         +
     </button>
 

@@ -1,20 +1,10 @@
-<script marko-init>
-function getStepBody(stepIndex, steps) {
-    if (!steps) {
-        return;
-    }
-    var step = steps[stepIndex];
-    return step && (step.renderBody || step.label);
-}
-</script>
-
 <div class="app-progress-bar">
     <for(stepIndex, step in state.steps)>
         <div class=["progress-step", stepIndex === state.activeIndex && 'active']
             onClick("handleStepClick", stepIndex)>
 
             <a href="#" class="progress-step">
-                <span include(getStepBody(stepIndex, data.steps))/>
+                <span include(step.renderBody || step.label)/>
                 <div class="completion-icon"></div>
             </a>
             <div class="progress-step-end">

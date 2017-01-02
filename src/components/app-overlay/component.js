@@ -4,7 +4,8 @@ module.exports = {
     onInput: function(input) {
         this.state = {
             width: input.width || '80%',
-            visible: input.visible === true ? true : false
+            visible: input.visible === true ? true : false,
+            body: input.renderBody
         };
     },
 

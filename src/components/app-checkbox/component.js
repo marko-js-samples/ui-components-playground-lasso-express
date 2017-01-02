@@ -5,11 +5,9 @@ module.exports = {
         this.state = {
             checked: input.checked === true,
             checkboxClassName: input['class'] || input.checkboxClassName,
-            data: input.data
+            data: input.data,
+            body: input.label || input.renderBody
         };
-    },
-    getInitialBody: function(input) {
-        return input.label || input.renderBody;
     },
 
     isChecked: function() {
@@ -18,7 +16,7 @@ module.exports = {
 
     setChecked: function(newChecked) {
         if (newChecked !== this.state.checked) {
-            this.setState('checked', !this.state.checked);
+            this.state.checked = !this.state.checked;
         }
     },
 
@@ -44,7 +42,7 @@ module.exports = {
         });
 
         if (!defaultPrevented) {
-            this.setState('checked', newChecked);
+            this.state.checked = newChecked;
         }
     }
 };
