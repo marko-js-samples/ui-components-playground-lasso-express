@@ -28,6 +28,7 @@
     "marked": "^0.3.6",
     "marko": "^4.0.0-beta.4",
     "minprops": "^1.0.0",
+    "purecss": "^0.6.2",
     "raptor-pubsub": "^1.0.5",
     "raptor-util": "^1.0.9",
     "require-self-ref": "^2.0.1",
