@@ -22,6 +22,8 @@ import 'purecss/build/tables.css';
         },
 
         onMount: function() {
+            this.fetchPromise = Promise.resolve();
+
             if (this.state.users.length === 0) {
                 this.loadMore();
             }
@@ -30,17 +32,20 @@ import 'purecss/build/tables.css';
         loadMore: function() {
             this.state.loading = true;
 
-            var self = this;
+            var state = this.state;
 
-            getUsers({
-                    pageIndex: ++this.state.pageIndex
+            this.fetchPromise = this.fetchPromise
+                .then(function() {
+                    return getUsers({
+                           pageIndex: ++state.pageIndex
+                       });
                 })
                 .then(function(usersData) {
-                    self.state.users = self.state.users.concat(usersData.users);
-                    self.state.loading = false;
+                    state.users = state.users.concat(usersData.users);
+                    state.loading = false;
                 })
                 .catch(function(e) {
-                    self.state.loading = false;
+                    state.loading = false;
                     console.log('Fetch failed:', e);
                 });
         },
