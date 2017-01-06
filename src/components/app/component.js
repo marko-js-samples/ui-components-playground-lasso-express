@@ -1,9 +1,9 @@
 require('./style.less');
 
 var raptorPubsub = require('raptor-pubsub');
-var button = require('src/components/app-button');
-var checkbox = require('src/components/app-checkbox');
-var progressBar = require('src/components/app-progress-bar');
+var button = require('~/src/components/app-button');
+var checkbox = require('~/src/components/app-checkbox');
+var progressBar = require('~/src/components/app-progress-bar');
 var extend = require('raptor-util/extend');
 
 var buttonSizes = ['small', 'normal', 'large'];

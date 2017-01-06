@@ -30,6 +30,8 @@
     "minprops": "^1.0.0",
     "raptor-pubsub": "^1.0.5",
     "raptor-util": "^1.0.9",
-    "serve-static": "^1.6.2"
+    "require-self-ref": "^2.0.1",
+    "serve-static": "^1.6.2",
+    "whatwg-fetch": "^2.0.1"
   }
 }

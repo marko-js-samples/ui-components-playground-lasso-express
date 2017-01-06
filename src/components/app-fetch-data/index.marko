@@ -1,0 +1,73 @@
+import './style.less';
+import { getUsers } from '~/src/services/users';
+import 'purecss/build/tables.css';
+
+<script>
+    module.exports = {
+        onInput: function(input) {
+            var users = [];
+            var pageIndex = -1;
+
+            var usersData = input.usersData;
+            if (usersData) {
+                users = usersData.users;
+                pageIndex = usersData.pageIndex;
+            }
+
+            this.state = {
+                loading: false,
+                users: users,
+                pageIndex: pageIndex
+            };
+        },
+
+        handleLoadMoreClick: function() {
+            this.state.loading = true;
+
+            var self = this;
+
+            getUsers({
+                    pageIndex: ++this.state.pageIndex
+                })
+                .then(function(usersData) {
+                    self.state.users = self.state.users.concat(usersData.users);
+                    self.state.loading = false;
+                })
+                .catch(function(e) {
+                    console.log('Fetch failed:', e);
+                });
+        },
+
+        onUpdate: function() {
+            if (this.state.pageIndex > 0) {
+                var tableContainer = this.getEl('tableContainer');
+                tableContainer.scrollTop = tableContainer.scrollHeight;
+            }
+        }
+    }
+</script>
+
+<div.app-fetch-data>
+    <div class="table-container" ref="tableContainer">
+        <table class="pure-table" if(state.users.length)>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Avatar</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr for(user in state.users)>
+                    <td>${user.id}</td>
+                    <td><img src=user.avatar width=50 height=50></td>
+                    <td>${user.firstName} ${user.lastName}</td>
+                    <td>${user.email}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-button label=(state.users.length ? "Load more users" : 'Load users') onClick('handleLoadMoreClick')/>
+    <span class=[state.loading ? 'loading' : null]/>
+</div>
