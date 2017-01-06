@@ -21,7 +21,13 @@ import 'purecss/build/tables.css';
             };
         },
 
-        handleLoadMoreClick: function() {
+        onMount: function() {
+            if (this.state.users.length === 0) {
+                this.loadMore();
+            }
+        },
+
+        loadMore: function() {
             this.state.loading = true;
 
             var self = this;
@@ -37,6 +43,10 @@ import 'purecss/build/tables.css';
                     self.state.loading = false;
                     console.log('Fetch failed:', e);
                 });
+        },
+
+        handleLoadMoreClick: function() {
+            this.loadMore();
         },
 
         onUpdate: function() {
