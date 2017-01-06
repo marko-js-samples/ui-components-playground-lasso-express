@@ -34,6 +34,7 @@ import 'purecss/build/tables.css';
                     self.state.loading = false;
                 })
                 .catch(function(e) {
+                    self.state.loading = false;
                     console.log('Fetch failed:', e);
                 });
         },
