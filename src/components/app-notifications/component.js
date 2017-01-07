@@ -1,5 +1,3 @@
-require('./style.less');
-
 var raptorPubsub = require('raptor-pubsub');
 
 var nextId = 0;
