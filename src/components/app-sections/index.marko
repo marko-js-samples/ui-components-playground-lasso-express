@@ -1,14 +1,12 @@
 import './style.less'
 
-<script template-helpers>
-    function getAnchorName(section) {
-        if (!section.anchorName) {
-            section.anchorName = section.title.replace(/[^a-zA-Z]+/g, '-');
-        }
-
-        return section.anchorName;
+static function getAnchorName(section) {
+    if (!section.anchorName) {
+        section.anchorName = section.title.replace(/[^a-zA-Z]+/g, '-');
     }
-</script>
+
+    return section.anchorName;
+}
 
 <div class="app-sections">
     <div class="tableOfContents">

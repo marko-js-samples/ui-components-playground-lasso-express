@@ -1,34 +1,31 @@
-<script>
-    require('./style.less');
+class {
+    onInput(input) {
+        var activeIndex = 0;
 
-    module.exports = {
-        onInput: function(input) {
-            var activeIndex = 0;
+        var tabs = input.tabs || [];
 
-            var tabs = input.tabs || [];
+        tabs.forEach(function(tab, i) {
+            if (tab.active) {
+                activeIndex = i;
+            }
+        });
 
-            tabs.forEach(function(tab, i) {
-                if (tab.active) {
-                    activeIndex = i;
-                }
-            });
+        this.state = {
+            activeIndex: activeIndex,
+            tabs: tabs
+        };
+    }
 
-            this.state = {
-                activeIndex: activeIndex,
-                tabs: tabs
-            };
-        },
+    setActiveIndex(newActiveIndex) {
+        this.state.activeIndex = newActiveIndex;
+    }
 
-        setActiveIndex: function(newActiveIndex) {
-            this.state.activeIndex = newActiveIndex;
-        },
+    handleTabClick(tabIndex, event) {
+        this.setActiveIndex(tabIndex);
+        event.preventDefault();
+    }
+}
 
-        handleTabClick: function(tabIndex, event) {
-            this.setActiveIndex(tabIndex);
-            event.preventDefault();
-        }
-    };
-</script>
 <div class="app-tabs">
     <ul class="tab-nav">
         <li for(tabIndex, tab in state.tabs)

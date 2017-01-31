@@ -2,66 +2,64 @@ import './style.less';
 import { getUsers } from '~/src/services/users';
 import 'purecss/build/tables.css';
 
-<script>
-    module.exports = {
-        onInput: function(input) {
-            var users = [];
-            var pageIndex = -1;
+class {
+    onInput(input) {
+        var users = [];
+        var pageIndex = -1;
 
-            var usersData = input.usersData;
-            if (usersData) {
-                users = usersData.users;
-                pageIndex = usersData.pageIndex;
-            }
+        var usersData = input.usersData;
+        if (usersData) {
+            users = usersData.users;
+            pageIndex = usersData.pageIndex;
+        }
 
-            this.state = {
-                loading: false,
-                users: users,
-                pageIndex: pageIndex
-            };
-        },
+        this.state = {
+            loading: false,
+            users: users,
+            pageIndex: pageIndex
+        };
+    }
 
-        onMount: function() {
-            this.fetchPromise = Promise.resolve();
+    onMount() {
+        this.fetchPromise = Promise.resolve();
 
-            if (this.state.users.length === 0) {
-                this.loadMore();
-            }
-        },
-
-        loadMore: function() {
-            this.state.loading = true;
-
-            var state = this.state;
-
-            this.fetchPromise = this.fetchPromise
-                .then(function() {
-                    return getUsers({
-                           pageIndex: ++state.pageIndex
-                       });
-                })
-                .then(function(usersData) {
-                    state.users = state.users.concat(usersData.users);
-                    state.loading = false;
-                })
-                .catch(function(e) {
-                    state.loading = false;
-                    console.log('Fetch failed:', e);
-                });
-        },
-
-        handleLoadMoreClick: function() {
+        if (this.state.users.length === 0) {
             this.loadMore();
-        },
-
-        onUpdate: function() {
-            if (this.state.pageIndex > 0) {
-                var tableContainer = this.getEl('tableContainer');
-                tableContainer.scrollTop = tableContainer.scrollHeight;
-            }
         }
     }
-</script>
+
+    loadMore() {
+        this.state.loading = true;
+
+        var state = this.state;
+
+        this.fetchPromise = this.fetchPromise
+            .then(function() {
+                return getUsers({
+                       pageIndex: ++state.pageIndex
+                   });
+            })
+            .then(function(usersData) {
+                state.users = state.users.concat(usersData.users);
+                state.loading = false;
+            })
+            .catch(function(e) {
+                state.loading = false;
+                console.log('Fetch failed:', e);
+            });
+    }
+
+    handleLoadMoreClick() {
+        this.loadMore();
+    }
+
+    onUpdate() {
+        if (this.state.pageIndex > 0) {
+            var tableContainer = this.getEl('tableContainer');
+            tableContainer.scrollTop = tableContainer.scrollHeight;
+        }
+    }
+}
 
 <div.app-fetch-data>
     <div class="table-container" ref="tableContainer">

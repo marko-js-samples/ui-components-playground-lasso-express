@@ -1,7 +1,6 @@
 import './style.css'
 
-<script>
-function getClassNameForValue(value) {
+static function getClassNameForValue(value) {
     if (value < 0) {
         return 'negative';
     } else if (value > 0) {
@@ -9,28 +8,28 @@ function getClassNameForValue(value) {
     }
 }
 
-module.exports = {
-    onInput: function(input) {
+class {
+    onInput(input) {
         var value = input.value || 0;
 
         this.state = {
             value: value
         };
-    },
+    }
 
-    handleIncrementClick: function(delta) {
+    handleIncrementClick(delta) {
         this.state.value += delta;
-    },
-    handleInputKeyUp: function(event, el) {
+    }
+
+    handleInputKeyUp(event, el) {
         var newValue = el.value;
         if (/^-?[0-9]+$/.test(newValue)) {
             this.state.value = parseInt(newValue, 10);
         }
     }
-};
-</script>
+}
 
-var value=state.value
+$ var value=state.value;
 
 <div class=['number-spinner', getClassNameForValue(value)]>
 
