@@ -2,17 +2,18 @@ class {
     onInput(input) {
         var activeIndex = 0;
 
-        var tabs = input.tabs || [];
+        var tabs = input.tabs;
 
-        tabs.forEach(function(tab, i) {
-            if (tab.active) {
-                activeIndex = i;
-            }
-        });
+        if (tabs) {
+            tabs.forEach(function(tab, i) {
+                if (tab.active) {
+                    activeIndex = i;
+                }
+            });
+        }
 
         this.state = {
-            activeIndex: activeIndex,
-            tabs: tabs
+            activeIndex: activeIndex
         };
     }
 
@@ -28,7 +29,7 @@ class {
 
 <div class="app-tabs">
     <ul class="tab-nav">
-        <li for(tabIndex, tab in state.tabs)
+        <li for(tabIndex, tab in input.tabs)
             class=['tab', (tabIndex === state.activeIndex) && 'active']>
 
             <a href="#" onClick("handleTabClick", tabIndex)>
@@ -38,7 +39,7 @@ class {
     </ul>
     <div style="clear: both"/>
     <div class="tab-panes">
-        <div for(tabIndex, tab in state.tabs)
+        <div for(tabIndex, tab in input.tabs)
             class=['tab-pane', (tabIndex === state.activeIndex) && 'active']>
             <include(tab.renderBody)/>
         </div>

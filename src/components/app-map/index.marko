@@ -1,5 +1,32 @@
-$ var height=state.height
-$ var width=state.width
+class {
+    onMount() {
+        var el = this.el;
+        var google = window.google;
 
-<div class=['app-map', state.className] style={height: height, width: width}>
+        var lat = this.input.lat;
+        var lng = this.input.lng;
+
+        // If there is no internet connection then
+        // the Google Maps API will fail to load and
+        // window.google will be undefined
+        if (google && google.maps && google.maps.Map) {
+            var Map = google.maps.Map;
+            var LatLng = google.maps.LatLng;
+
+            this._map = new Map(el, {
+                zoom: 8,
+                center: new LatLng(
+                    lat,
+                    lng)
+                });
+        } else {
+            this.innerHTML = 'Failed to load Google Maps API. Is your internet connection working?';
+        }
+    }
+}
+
+$ var height=input.height
+$ var width=input.width
+
+<div class=['app-map', input['class']] style={height: height, width: width}>
 </div>

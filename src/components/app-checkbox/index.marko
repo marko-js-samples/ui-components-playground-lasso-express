@@ -1,13 +1,56 @@
+class {
+
+    onInput(input) {
+        this.state = {
+            checked: input.checked === true,
+        };
+    }
+
+    isChecked() {
+        return this.state.checked === true;
+    }
+
+    setChecked(newChecked) {
+        this.state.checked = newChecked
+    }
+
+    toggle() {
+        this.state.checked = !this.state.checked;
+    }
+
+    getData() {
+        return this.input.data;
+    }
+
+    handleClick() {
+        var newChecked = !this.state.checked;
+
+        var defaultPrevented = false;
+
+        this.emit('toggle', {
+            checked: newChecked,
+            data: this.getData(),
+            preventDefault: function() {
+                defaultPrevented = true;
+            }
+        });
+
+        if (!defaultPrevented) {
+            this.state.checked = newChecked;
+        }
+    }
+}
+
+
 $ var classNames=[
     'app-checkbox',
-    state.checked && 'checked',
-    state.checkboxClassName
-]
+    input['class'],
+    state.checked && 'checked'
+];
 
 <app-button ref="button" class=classNames onClick('handleClick')>
     <span class="app-checkbox-icon"/>
     <span ref="checkboxLabel">
-        <include(state.body)/>
+        <include(input.label || input.renderBody)/>
     </span>
-
 </app-button>
