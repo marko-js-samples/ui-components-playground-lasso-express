@@ -16,19 +16,6 @@ class {
             event: event // Pass along the DOM event in case it is helpful to others
         });
     }
-
-    // Add any other methods here
-    setVariant(variant) {
-        this.state.variant = variant;
-    }
-
-    setSize(size) {
-        this.state.size = size;
-    }
-
-    setLabel(label) {
-        this.state.label = label;
-    }
 }
 
 $ var variantClassName = (input.variant !== 'primary' && 'app-button-' + input.variant);
