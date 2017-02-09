@@ -8,13 +8,6 @@ var express = require('express');
 var compression = require('compression'); // Provides gzip compression for the HTTP response
 var serveStatic = require('serve-static');
 
-// If the process was started using browser-refresh then enable
-// hot reloading for certain types of files to short-circuit
-// a full process restart. You *should* use browser-refresh
-// in development: https://www.npmjs.com/package/browser-refresh
-require('marko/browser-refresh').enable();
-require('lasso/browser-refresh').enable('*.marko *.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg');
-
 var isProduction = process.env.NODE_ENV === 'production';
 
 // Configure the RaptorJS Optimizer to control how JS/CSS/etc. is

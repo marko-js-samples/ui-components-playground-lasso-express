@@ -48,9 +48,9 @@ $ var classNames=[
     state.checked && 'checked'
 ];
 
-<app-button ref="button" class=classNames onClick('handleClick')>
+<app-button key="button" class=classNames onClick('handleClick')>
     <span class="app-checkbox-icon"/>
-    <span ref="checkboxLabel">
+    <span key="checkboxLabel">
         <include(input.label || input.renderBody)/>
     </span>
 </app-button>

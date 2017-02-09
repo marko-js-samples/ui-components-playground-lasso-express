@@ -10,6 +10,6 @@ style.less {
 
 <div class="app-notifications">
     <for(notification in state.notifications)>
-        <app-notification(notification) ref=notification.id />
+        <app-notification(notification) key=notification.id />
     </for>
 </div>
