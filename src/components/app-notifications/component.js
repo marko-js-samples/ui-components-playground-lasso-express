@@ -37,7 +37,7 @@ module.exports = {
     },
 
     removeNotification: function(notificationId) {
-        var notificationWidget = this.getWidget(notificationId);
+        var notificationWidget = this.getComponent(notificationId);
         notificationWidget.fadeOut(function() {
             var notifications = this.state.notifications.filter(function(notification) {
                 return notification.id !== notificationId;

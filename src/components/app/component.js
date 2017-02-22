@@ -56,12 +56,12 @@ module.exports = {
      * a full rerender.
      */
     update_overlayVisible: function(overlayVisible) {
-        this.getWidget('overlay').setVisibility(overlayVisible);
+        this.getComponent('overlay').setVisibility(overlayVisible);
     },
 
     handleShowOverlayButtonClick: function() {
         // this.setState('overlayVisible', true);
-        this.getWidget('overlay').show();
+        this.getComponent('overlay').show();
     },
 
     handleOverlayHide: function() {
@@ -138,7 +138,7 @@ module.exports = {
     },
 
     handleToggleCheckboxButtonClick: function(event) {
-        var checkbox = this.getWidget('toggleCheckbox');
+        var checkbox = this.getComponent('toggleCheckbox');
         checkbox.toggle();
     },
 
