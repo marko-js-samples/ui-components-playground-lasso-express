@@ -1,4 +1,4 @@
-Marko Widgets: UI Components Playground
+Marko UI Components Playground
 ==================================
 
 ```bash

@@ -4,7 +4,8 @@
   "description": "Sample app that demonstrates the power of building UI components using Marko and Marko Widgets",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "browser-refresh": "browser-refresh server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/marko-js-samples/ui-components-playground",
   "dependencies": {
     "app-module-path": "^1.1.0",
+    "browser-refresh": "^1.7.1",
     "browser-refresh-taglib": "^1.1.0",
     "compression": "^1.6.2",
     "express": "^4.14.0",
@@ -26,7 +28,7 @@
     "lasso-less": "^2.4.0",
     "lasso-marko": "^2.2.1",
     "marked": "^0.3.6",
-    "marko": "^4.0.0-rc.19",
+    "marko": "^4.0.0-rc.20",
     "minprops": "^1.0.0",
     "purecss": "^0.6.2",
     "raptor-pubsub": "^1.0.5",
