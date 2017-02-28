@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/marko-js-samples/ui-components-playground",
   "dependencies": {
-    "app-module-path": "^1.1.0",
     "browser-refresh": "^1.7.1",
     "browser-refresh-taglib": "^1.1.0",
     "compression": "^1.6.2",
