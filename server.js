@@ -15,11 +15,7 @@ var isProduction = process.env.NODE_ENV === 'production';
 require('lasso').configure({
     plugins: [
         'lasso-less', // Allow Less files to be rendered to CSS
-        'lasso-marko', // Allow Marko templates to be compiled and transported to the browser
-        {
-            plugin: 'minprops/lasso',
-            enabled: isProduction
-        }
+        'lasso-marko' // Allow Marko templates to be compiled and transported to the browser
     ],
     outputDir: __dirname + '/static', // Place all generated JS/CSS/etc. files into the "static" dir
     bundlingEnabled: isProduction, // Only enable bundling in production
